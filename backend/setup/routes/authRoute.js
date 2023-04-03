@@ -31,6 +31,13 @@ router.get('/isAdmin',(req,res)=>{
     return res.status(401).end()
 })
 
+router.get('/isGuard',(req,res)=>{
+    if(req.session.role === 'guard') {
+        return res.status(200).end()
+    }
+    return res.status(401).end()
+})
+
 router.get('/authorized',async(req,res)=>{
     const [rows] = await db.query('SELECT role FROM profile WHERE username=?',[req.session.passport.user])
     if(rows.length > 0) {

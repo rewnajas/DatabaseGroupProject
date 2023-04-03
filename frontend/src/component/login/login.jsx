@@ -31,10 +31,15 @@ export default function Login() {
       }
     ).then((response)=>{
       if(response.status === 200) {
+
         if(response.data.role === 'user') {
           navigate('/homepage')
-        } else {
+        }
+        
+        else if(response.data.role === 'admin'){
           navigate('/admin')
+        } else {
+          navigate('/guard')
         }
       }
 
