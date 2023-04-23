@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./login.css";
+import style from "./login.module.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -50,16 +50,23 @@ export default function Login() {
   }
   return (
     <>
-      <h1>Login</h1>
+    <div className={style.wrapper}>
+
+      <div className={style.header}><h1>Login</h1></div>
+
+      <div className={style.form}>
       <form onSubmit={handleSubmit}>
         <h3>Username</h3>
         <input type="text" required onChange={handleUsername} />
+
         <h3>Password</h3>
         <input type="password" required onChange={handlePassword} />
-        <button>Login</button>
-        {message && <h3>{message}</h3>}
         
+        <button>Login</button>
+        {message && <h3>{message}</h3>} 
       </form>
+      </div>
+    </div>
     </>
   );
 }
