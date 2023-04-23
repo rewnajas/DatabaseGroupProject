@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-//import './App.css'
 import Login from './component/login/login'
 import Protected from './component/routeHandling/protected'
 import IsUser from './component/routeHandling/isUser'
@@ -27,6 +26,7 @@ function App() {
             <Route element={<IsGuard/>}>
             <Route exact path='guard' element={<Guard/>}/>
             </Route>
+            
         </Route>
 
 
