@@ -23,9 +23,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-
 app.get('/unauthorized',(req,res)=>{
-    console.log('401')
     res.status(401).end()
 })
 
@@ -35,7 +33,6 @@ app.post('/login',passport.authenticate('local',{
 }))
 
 app.use(authRouter)
-
 
 app.listen(port,()=>{
     console.log(`Listening on port ${port}`)

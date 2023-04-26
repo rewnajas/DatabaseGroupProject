@@ -13,7 +13,6 @@ router.use(session({
 router.use(checkAuth)
 
 router.get('/checkauth',(req,res)=>{
-    
     return res.status(200).end()
 })
 
@@ -44,7 +43,6 @@ router.get('/authorized',async(req,res)=>{
         req.session.role = rows[0].role
         return res.status(200).send({role : rows[0].role})
     }
-   
 })
 
 module.exports = router

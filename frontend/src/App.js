@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Login from './component/login/login'
+import Login from './pages/login/login'
 import Protected from './component/routeHandling/protected'
 import IsUser from './component/routeHandling/isUser'
 import IsAdmin from './component/routeHandling/isAdmin'
