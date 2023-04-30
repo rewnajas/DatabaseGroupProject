@@ -4,10 +4,16 @@ import Protected from './component/routeHandling/protected'
 import IsUser from './component/routeHandling/isUser'
 import IsAdmin from './component/routeHandling/isAdmin'
 import IsGuard from './component/routeHandling/isGuard'
-import Homepage from './component/homepage/homepage'
-import Admin from './component/admin/admin'
-import Guard from './component/guard/guard'
+import Homepage from './pages/homepage/homepage'
+import './app.css'
+/*<Route element={<IsAdmin/>}> 
+          <Route exact path='admin' element={<Admin/>}/>
+            </Route>
 
+            <Route element={<IsGuard/>}>
+            <Route exact path='guard' element={<Guard/>}/>
+            </Route>
+*/ 
 function App() {
   return (
     <BrowserRouter>
@@ -19,13 +25,7 @@ function App() {
             <Route exact path='homepage' element={<Homepage/>}/>
           </Route>
 
-          <Route element={<IsAdmin/>}> 
-          <Route exact path='admin' element={<Admin/>}/>
-            </Route>
-
-            <Route element={<IsGuard/>}>
-            <Route exact path='guard' element={<Guard/>}/>
-            </Route>
+          
             
         </Route>
 
