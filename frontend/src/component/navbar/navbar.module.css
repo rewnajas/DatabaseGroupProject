@@ -25,3 +25,11 @@
   .armanent h1 {
     font-weight: normal;
   }
+
+  .armanent,.title {
+    cursor: default;
+  }
+
+  .hamberger {
+    cursor: pointer;
+  }
