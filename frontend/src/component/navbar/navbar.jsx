@@ -18,7 +18,7 @@ export default function Navbar(props) {
         <div className={style.title}>
           <p>{props.title}</p>
         </div>
-        <div className="hambergur">hambergur</div>
+        <div className={style.hamberger}>hamberger</div>
       </div>
 
       
