@@ -1,63 +1,112 @@
+
 .wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
 }
 
-.header {
-  margin-bottom: 2rem;
-  text-align: center;
+.left {
+  width: 50%;
+  height: 685px;
+  position: relative;
+}
+
+.nav {
+  margin: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 50px;
+}
+
+.armanent {
+  margin-left: 10px;
+  color: #5D9C59;
+}
+
+.armanent h1 {
+  font-weight: normal;
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 300px;
-  background-color: #f8f8f8;
-  padding: 2rem;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 60%;
+  top: 30%;
+  transform: translate(-50%);
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+.body {
+  margin-top: 20px;
 }
 
-h3 {
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-input {
-  padding: 0.5rem;
-  margin-bottom: 1.5rem;
+.login_input {
+  margin-top: 10px;
+  padding: 4px;
+  border-radius: 10px;
   border: none;
-  border-radius: 3px;
+  height: 25px;
+  width:250px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-button {
-  padding: 0.5rem 1rem;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 3px;
+.each_input {
+  margin-top: 30px ;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.right {
+  width: 50%;
+  position: relative;
+}
+
+.right img {
+  z-index: 0;
+}
+
+.error {
+  margin-top: 20px;
+}
+
+.error h3 {
+  font-weight: normal;
+}
+
+.button {
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  margin-top: 40px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  width: 200px;
+  background-color: #DF2E38;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  color: white;
 }
 
-button:hover {
-  background-color: #3e8e41;
+.message {
+  position: absolute;
+  top: 38%;
+  margin-left: 20px;
+  z-index: 1;
+  color: white
 }
 
-h3.message {
-  margin-top: 1.5rem;
-  text-align: center;
-  color: red;
+.head  h2 {
+  font-size: 1.7em;
 }
+
+.info {
+  margin-top: 80px;
+}
+
+.info p {
+  font-size:16.5px;
+}
+
+
