@@ -14,10 +14,8 @@ export default function IsGuard() {
       if(response.status === 200) {
         setPermission(true)
       }
-    }).catch((err)=>console.log(err))
-    .finally(()=>{
-      setLoading(false)
-    })
+    }).catch(err=>console.log(err))
+    .finally(()=>setLoading(false))
 
   })
 

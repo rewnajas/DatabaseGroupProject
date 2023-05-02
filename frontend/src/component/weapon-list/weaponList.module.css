@@ -1,0 +1,33 @@
+.wrapper {
+    background-color: #F7E1AE;
+}
+.header h1 {
+    padding-top: 30px;
+    padding-left: 60px;
+    font-weight: normal;
+}
+
+.row {
+    width: 1290px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; 
+}
+
+.button button {
+    cursor: pointer;
+    height: 30px;
+    width: 80px;
+    color: white;
+    border-radius: 10px;
+    background-color: #C7E8CA;
+    border: none;
+}
+
+div.row > div {
+    
+    display: flex;
+    justify-content: center;
+    width: 215px;
+  }
+  

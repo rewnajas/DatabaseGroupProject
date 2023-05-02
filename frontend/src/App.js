@@ -1,3 +1,4 @@
+import './app.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './pages/login/login'
 import Protected from './component/routeHandling/protected'
@@ -7,37 +8,28 @@ import IsGuard from './component/routeHandling/isGuard'
 import Homepage from './pages/homepage/homepage'
 import Guard from './pages/guard/guard'
 import Admin from './pages/admin/admin'
+import Request from './pages/request/request'
+import Navbar from './component/navbar/navbar'
 
-
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path='/' element={<Login/>}/>
+        <Route exact path='/' element={<Login />} />
 
-        <Route element={<Protected/>}>
-          <Route element={<IsUser/>}> 
-            <Route exact path='homepage' element={<Homepage/>}/>
+        <Route element={<Protected />}>
+
+          <Route element={<IsUser/>}>
+
+          <Route path='homepage' element={<Homepage />}>
+            <Route index element={<>Home</>} />
+            <Route path='request' element={<Request />} />
           </Route>
-
-          <Route element={<IsAdmin/>}> 
-          <Route exact path='admin' element={<Admin/>}/>
-            </Route>
-
-            <Route element={<IsGuard/>}>
-            <Route exact path='guard' element={<Guard/>}/>
-            </Route>
-
-          
-            
+          </Route>
         </Route>
-
-
       </Routes>
-    
     </BrowserRouter>
-      
   );
 }
 
-export default App;
+
