@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 export default function Navbar(props) {
   return (
-   
+   <>
     <div className={style.nav}>
       <div className={style.left}>
         <div className={style.logo}>
@@ -23,6 +23,8 @@ export default function Navbar(props) {
         <div className={style.hamberger}>hamberger</div>
       </div>
     </div>
+      <Outlet/>
+    </>
      
 
     

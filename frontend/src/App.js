@@ -16,15 +16,12 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path='/' element={<Login />} />
-
         <Route element={<Protected />}>
-
-          <Route element={<IsUser/>}>
-
-          <Route path='homepage' element={<Homepage />}>
-            <Route index element={<>Home</>} />
-            <Route path='request' element={<Request />} />
-          </Route>
+          <Route element={<IsUser />}>
+            <Route path='homepage' element={<Navbar />}>
+              <Route index element={<>Home</>} />
+              <Route path='request' element={<Request />} />
+            </Route>
           </Route>
         </Route>
       </Routes>
