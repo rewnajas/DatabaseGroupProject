@@ -7,8 +7,7 @@ import { Outlet } from 'react-router-dom'
 export default function homepage() {
   return (
     <>
-     <Navbar/>
-     <Outlet/>
+     <h1>Homepage</h1>
     </>
   )
 }

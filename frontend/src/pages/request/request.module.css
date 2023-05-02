@@ -34,11 +34,13 @@ h3 {
 }
 
 .button {
+    
     margin-left: 10px;
 }
 
  
 .button button {
+    
     cursor: pointer;
     height: 30px;
     width: 80px;
