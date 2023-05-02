@@ -1,10 +1,14 @@
+//i here rew
 import React from 'react'
 import Navbar from '../../component/navbar/navbar'
+import { Outlet } from 'react-router-dom'
+
 
 export default function homepage() {
   return (
     <>
-    <Navbar title="พล.อ. ประยุทธ์ จันโอชา" />
+     <Navbar/>
+     <Outlet/>
     </>
   )
 }

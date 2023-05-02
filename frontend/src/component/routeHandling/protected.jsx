@@ -15,10 +15,8 @@ export default function Protected() {
       if(response.status === 200) {
         setPermission(true)
       }
-    }).catch((err)=>console.log('fail'))
-    .finally(()=>{
-      setLoading(false)
-    })
+    }).catch(err=>console.log(err))
+    .finally(()=>setLoading(false))
   })
 
   if(loading) return null
