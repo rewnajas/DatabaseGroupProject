@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "../../component/navbar/navbar";
 import style from "./request.module.css";
 import WeaponList from "../../component/weapon-list/weaponList";
+import RequestList from "../../component/weapon-request-list/requestList";
 export default function request() {
   return (
     <div className={style.wrapper}>
@@ -20,8 +20,8 @@ export default function request() {
             </button>
           </div>
         </div>
-
         <WeaponList/>
+        <RequestList/>
       
     </div>
   );

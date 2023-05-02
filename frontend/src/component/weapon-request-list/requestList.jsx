@@ -1,11 +1,11 @@
 import React from "react";
-import style from "./weaponList.module.css";
+import style from "../weapon-list/weaponList.module.css";
 
-export default function weaponList() {
+export default function requestList() {
   return (
     <div className={style.wrapper}>
       <div className={style.header}>
-        <h1>Available weapon</h1>
+        <h1>request list</h1>
       </div>
 
       <div className={style.table_wrapper}>
@@ -15,9 +15,9 @@ export default function weaponList() {
           </div>
           <div className={style.type}><h2>Weapon type</h2></div>
           <div className={style.armory}><h2>Armory name</h2></div>
-          <div className={style.available}><h2>Available</h2></div>
-          <div className={style.count}><h2>Amount</h2></div>
-          <div></div>
+          <div className={style.available}><h2>amount</h2></div>
+          <div className={style.count}><h2>borrow date</h2></div>
+          <div><h2>return date</h2></div>
           
         </div>
 
@@ -30,15 +30,13 @@ export default function weaponList() {
           <div className={style.available}><p>655</p></div>
           <div className={style.count}>
             <div className={style.amout_wrapper}>
-              <div className={style.del}><button><h3>-</h3></button></div>
-              <div className={style.amount_display}><p>56</p></div>
-              <div className={style.add}><button><h3>+</h3></button></div>
+              <input type="date" />
             </div>
           </div>
           <div className={style.button}>
-            <button>
-              <h3>add to list</h3>
-            </button>
+            
+            <input type="date" />
+            
             </div>
         </div> 
         <hr className={style.hr}/>
