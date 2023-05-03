@@ -81,6 +81,13 @@ div.row:not(:first-of-type) {
     background-color: rgba(0, 0, 0, 0.4);
     height: 2px;
 }
+
+.input_date {
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 1.1rem;
+    height:30px;
+}
   
   
   

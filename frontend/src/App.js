@@ -19,7 +19,7 @@ export default function App() {
         <Route element={<Protected />}>
           <Route element={<IsUser />}>
             <Route path='homepage' element={<Navbar />}>
-              <Route index element={<>Home</>} />
+              <Route index element={<Homepage/>} />
               <Route path='request' element={<Request />} />
             </Route>
           </Route>

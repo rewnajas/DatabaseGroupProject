@@ -32,3 +32,62 @@ describe('Testing a login api', () => {
         })
     }))
 })
+
+describe('Test each role api',()=>{
+    let agent
+    beforeEach(() => {
+        agent = request.agent(app)
+    })
+
+    it('Test a valid user api',(done)=>{
+        agent.post('/login').send({
+            username: 'user',
+            password: 'user'
+        }).expect(302).expect('Location', '/authorized').end((err, res) => {
+            if (err) return done(err)
+            agent.get('/getRole').expect(200).end((err, res) => {
+                if (err) return done(err)
+                agent.get('/user/userTest').expect(200).end((err,res)=>{
+                    if(err) return done(err)
+                    return done()
+                })
+            })
+        })
+
+    })
+
+    it('Test a valid admin api',(done)=>{
+        agent.post('/login').send({
+            username: 'admin',
+            password: 'admin'
+        }).expect(302).expect('Location', '/authorized').end((err, res) => {
+            if (err) return done(err)
+            agent.get('/getRole').expect(200).end((err, res) => {
+                if (err) return done(err)
+                agent.get('/admin/adminTest').expect(200).end((err,res)=>{
+                    if(err) return done(err)
+                    return done()
+                })
+            })
+        })
+
+    })
+
+    it('Test a valid guard api',(done)=>{
+        agent.post('/login').send({
+            username: 'guard',
+            password: 'guard'
+        }).expect(302).expect('Location', '/authorized').end((err, res) => {
+            if (err) return done(err)
+            agent.get('/getRole').expect(200).end((err, res) => {
+                if (err) return done(err)
+                agent.get('/guard/guardTest').expect(200).end((err,res)=>{
+                    if(err) return done(err)
+                    return done()
+                })
+            })
+        })
+
+    })
+
+})

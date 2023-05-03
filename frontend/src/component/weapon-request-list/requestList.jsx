@@ -30,13 +30,11 @@ export default function requestList() {
           <div className={style.available}><p>655</p></div>
           <div className={style.count}>
             <div className={style.amout_wrapper}>
-              <input type="date" />
+              <input type="date" className={style.input_date}/>
             </div>
           </div>
           <div className={style.button}>
-            
-            <input type="date" />
-            
+            <input type="date" className={style.input_date}/>
             </div>
         </div> 
         <hr className={style.hr}/>
@@ -49,16 +47,12 @@ export default function requestList() {
           <div className={style.armory}><p>armory</p></div>
           <div className={style.available}><p>655</p></div>
           <div className={style.count}>
-            <div className={style.amout_wrapper}>
-              <div className={style.del}><button><h3>-</h3></button></div>
-              <div className={style.amount_display}><p>56</p></div>
-              <div className={style.add}><button><h3>+</h3></button></div>
+          <div className={style.amout_wrapper}>
+              <input type="date" className={style.input_date}/>
             </div>
           </div>
           <div className={style.button}>
-            <button>
-              <h3>add to list</h3>
-            </button>
+            <input type="date" className={style.input_date}/>
             </div>
         </div> <hr className={style.hr}/>
 

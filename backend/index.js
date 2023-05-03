@@ -1,3 +1,4 @@
+//required all dependecies
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
@@ -8,6 +9,7 @@ const authRouter = require('./setup/routes/authRoute')
 const port = process.env.port
 
 const app = express()
+//initialize a global middleware
 app.use(cors({
     origin : 'http://localhost:3000',
     credentials : true
@@ -23,6 +25,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+//defining a route
 app.get('/unauthorized',(req,res)=>{
     res.status(401).end()
 })

@@ -5,5 +5,25 @@ function checkAuth(req,res,next) {
     return res.status(401).end()
 }
 
- 
- module.exports = checkAuth
+function isUser(req,res,next) {
+    if(req.session.role === 'user') {
+        return next()
+    }
+    return res.status(401).end()
+}
+
+function isAdmin(req,res,next) {
+    if(req.session.role === 'admin') {
+        return next()
+    }
+    return res.status(401).end()
+}
+
+function isGuard(req,res,next) {
+    if(req.session.role === 'guard') {
+        return next()
+    }
+    return res.status(401).end()
+}
+
+ module.exports = {checkAuth,isUser,isAdmin,isGuard}

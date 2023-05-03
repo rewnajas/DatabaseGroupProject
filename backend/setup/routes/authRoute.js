@@ -1,5 +1,8 @@
 const router = require('express').Router()
-const checkAuth = require('../middleware/middleware')
+const {checkAuth} = require('../middleware/middleware')
+const userRoute = require('./user')
+const adminRoute = require('./admin')
+const guardRoute = require('./guard')
 const db = require('../database-config')
 const session = require('express-session')
 require('dotenv').config()
@@ -11,6 +14,7 @@ router.use(session({
 }))
 
 router.use(checkAuth)
+
 
 router.get('/checkauth',(req,res)=>{
     return res.status(200).end()
@@ -40,9 +44,21 @@ router.get('/isGuard',(req,res)=>{
 router.get('/authorized',async(req,res)=>{
     const [rows] = await db.query('SELECT role FROM profile WHERE username=?',[req.session.passport.user])
     if(rows.length > 0) {
-        req.session.role = rows[0].role
         return res.status(200).send({role : rows[0].role})
     }
 })
+
+router.get('/getRole',async(req,res)=>{
+    const [rows] = await db.query('SELECT role FROM profile WHERE username=?',[req.session.passport.user])
+    if(rows.length > 0) {
+        req.session.role = rows[0].role
+        console.log(req.session)
+        return res.status(200).end()
+    }
+})
+
+router.use('/user',userRoute)
+router.use('/admin',adminRoute)
+router.use('/guard',guardRoute)
 
 module.exports = router
