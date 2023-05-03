@@ -1,18 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./searchbar.module.css";
 import useSuggestBar from "../../customHooks/useSuggestBar";
+import axios from "axios";
 
 export default function Searchbar(props) {
   const [searchString, setSearchString] = useState("");
   const [resultlist] = useSuggestBar(
     searchString,
-    "http://localhost:8000/user/search"
+    "http://localhost:8000/user/searchRegx"
   );
 
   const handleClick = (val) => {
     props.setWeapon([val]);
     setSearchString('');
   };
+
+const handleSearch = () =>{
+  axios.get(`http://localhost:8000/user/search${searchString}`,{withCredentials : true})
+  .then((response)=>{
+    props.setWeapon(response.data);
+  })
+}
 
   return (
     <div className={style.wrapper}>
@@ -41,7 +49,7 @@ export default function Searchbar(props) {
           })}
         </div>
         <div className={style.button}>
-          <button>
+          <button onClick={handleSearch}>
             <h3>Search</h3>
           </button>
         </div>
