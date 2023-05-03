@@ -7,12 +7,11 @@ export default function useSuggestBar(searchString, url) {
     useEffect(()=>{
         if(searchString && !list.some(item => item.weapon_name === searchString)) {
             axios.post(url,{name : searchString},{withCredentials : true})
-        .then(response=>setList(response.data))
+            .then(response=>setList(response.data))
 
         } else {
             setList([])
         }
-        
     },[searchString])
 
     return [list, setList]
