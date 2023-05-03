@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {checkAuth} = require('../middleware/middleware')
+const {checkAuth,checkRole} = require('../middleware/middleware')
 const userRoute = require('./user')
 const adminRoute = require('./admin')
 const guardRoute = require('./guard')
@@ -20,21 +20,21 @@ router.get('/checkauth',(req,res)=>{
     return res.status(200).end()
 })
 
-router.get('/isUser',(req,res)=>{
+router.get('/isUser',checkRole,(req,res)=>{
     if(req.session.role === 'user') {
         return res.status(200).end()
     }
     return res.status(401).end()
 })
 
-router.get('/isAdmin',(req,res)=>{
+router.get('/isAdmin',checkRole,(req,res)=>{
     if(req.session.role === 'admin') {
         return res.status(200).end()
     }
     return res.status(401).end()
 })
 
-router.get('/isGuard',(req,res)=>{
+router.get('/isGuard',checkRole,(req,res)=>{
     if(req.session.role === 'guard') {
         return res.status(200).end()
     }
