@@ -12,6 +12,7 @@ function checkRole(req,res,next) {
     }
     return next()
 }
+
 function isUser(req,res,next) {
     
     if(req.session.role === 'user') {
