@@ -19,7 +19,7 @@ export default function WeaponList(props) {
       ...prevState,
       [name]: Math.min(available, (prevState[name] || 0) + 1),
     }));
-    console.log(counts)
+    console.log(counts);
   };
 
   const handleDecrement = (name) => {
@@ -30,22 +30,21 @@ export default function WeaponList(props) {
   };
 
   const handleClick = (val) => {
-    const newWishList = [
-      
-      {
-        weapon_name: val.weapon_name,
-        weapon_type: val.weapon_type,
-        armory_name: val.armory_name,
-        amount: counts[val.weapon_name],
-      },
-    ];
+    const newWishListItem = {
+      weapon_name: val.weapon_name,
+      weapon_type: val.weapon_type,
+      armory_name: val.armory_name,
+      amount: counts[val.weapon_name],
+    };
+
+    const newWishList = [...props.wishList, newWishListItem];
     props.setWishList(newWishList);
 
     const updatedWeaponInfo = props.weaponInfo.filter(
       (item) => item.weapon_name !== val.weapon_name
     );
 
-    props.setWeaponInfo(updatedWeaponInfo)
+    props.setWeaponInfo(updatedWeaponInfo);
   };
 
   if (props.weaponInfo.length === 0) {

@@ -13,36 +13,44 @@ export default function requestList(props) {
     return accumulator;
   }, []);
   console.log(uniqueWeaponInfo);
+
+  if (props.wishList.length === 0) {
+    return null;
+  }
+
   return (
+      
     <div className={style.wrapper}>
       <div className={style.header}>
         <h1>request list</h1>
       </div>
 
-      {uniqueWeaponInfo.map((val) => {
-        return (
-          <div className={style.table_wrapper}>
-            <div className={style.row}>
-              <div className={style.name}>
-                <h2>Weapon name</h2>
-              </div>
-              <div className={style.type}>
-                <h2>Weapon type</h2>
-              </div>
-              <div className={style.armory}>
-                <h2>Armory name</h2>
-              </div>
-              <div className={style.available}>
-                <h2>amount</h2>
-              </div>
-              <div className={style.count}>
-                <h2>borrow date</h2>
-              </div>
-              <div>
-                <h2>return date</h2>
-              </div>
-            </div>
+      <div className={style.table_wrapper}>
+        <div className={style.row}>
+          <div className={style.name}>
+            <h2>Weapon name</h2>
+          </div>
+          <div className={style.type}>
+            <h2>Weapon type</h2>
+          </div>
+          <div className={style.armory}>
+            <h2>Armory name</h2>
+          </div>
+          <div className={style.available}>
+            <h2>amount</h2>
+          </div>
+          <div className={style.count}>
+            <h2>borrow date</h2>
+          </div>
+          <div>
+            <h2>return date</h2>
+          </div>
+        </div>
+        
 
+        {uniqueWeaponInfo.map((val) => {
+          return (
+            <>
             <div className={style.row}>
               <div className={style.name}>
                 <h3>{val.weapon_name}</h3>
@@ -64,11 +72,19 @@ export default function requestList(props) {
               <div className={style.button}>
                 <input type="date" className={style.input_date} />
               </div>
+              
             </div>
             <hr className={style.hr} />
-          </div>
-        );
-      })}
+
+            
+          </>
+            
+          );
+        })}
+      </div>
     </div>
   );
+
+  
+  
 }
