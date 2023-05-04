@@ -32,6 +32,20 @@
     border: none;
 }
 
+.buttonNext {
+    position: relative;
+    left: 85%;
+    cursor: pointer;
+    height: 40px;
+    width: 90px;
+    margin-top: 20px;
+    color: white;
+    border-radius: 10px;
+    background-color: #C7E8CA;
+    border: none;
+    font-size: 1.2rem;
+}
+
 div.row > div {
     display: flex;
     justify-content: center;

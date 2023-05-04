@@ -46,7 +46,6 @@ export default function requestList(props) {
             <h2>return date</h2>
           </div>
         </div>
-        
 
         {uniqueWeaponInfo.map((val) => {
           return (
@@ -75,13 +74,14 @@ export default function requestList(props) {
               
             </div>
             <hr className={style.hr} />
-
+            
             
           </>
             
           );
         })}
       </div>
+      <button className={style.buttonNext}>Next</button>
     </div>
   );
 

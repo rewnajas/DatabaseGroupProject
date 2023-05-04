@@ -15,7 +15,6 @@ router.use(session({
 
 router.use(checkAuth)
 
-
 router.get('/checkauth',(req,res)=>{
     return res.status(200).end()
 })
