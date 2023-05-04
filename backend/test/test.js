@@ -1,8 +1,6 @@
 const app = require('../index')
 const request = require('supertest')
 
-//run an automated test with command npx mocha in a terminal
-
 describe('Testing a login api', () => {
     let agent
     beforeEach(() => {
