@@ -18,7 +18,6 @@ h3 {
 }
 .input_wrapper {
     display: flex;
-    align-items: center;
     margin-left: 190px;
     margin-top: 20px;
     
@@ -27,6 +26,7 @@ h3 {
 .input {
     font-size: 1.2rem;
     width: 600px;
+    
     padding: 8px;
     height: 40px;
     border-radius: 2px;
@@ -43,6 +43,7 @@ h3 {
     cursor: pointer;
     height: 30px;
     width: 80px;
+    margin-top: 5px;
     color: white;
     border-radius: 10px;
     background-color: #C7E8CA;
