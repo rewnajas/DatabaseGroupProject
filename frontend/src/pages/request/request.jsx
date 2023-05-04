@@ -4,13 +4,22 @@ import WeaponList from "../../component/weapon-list/weaponList";
 import RequestList from "../../component/weapon-request-list/requestList";
 
 export default function Request() {
-  const [weaponList,setWeaponList] = useState([])
-  
+  const [weaponList, setWeaponList] = useState([]);
+  const [wishList, setWishList] = useState([]);
+
   return (
     <>
-      <Searchbar setWeapon={list=>setWeaponList(prevList => [...prevList, ...list])}/>
-      <WeaponList weaponInfo={weaponList}/>
-      <RequestList />
+      <Searchbar
+        setWeapon={(list) =>
+          setWeaponList((prevList) => [...prevList, ...list])
+        }
+      />
+      <WeaponList
+        setWishList={(wishList) => setWishList(wishList)}
+        weaponInfo={weaponList}
+        setWeaponInfo={setWeaponList}
+      />
+      <RequestList wishList={wishList} />
     </>
   );
 }
