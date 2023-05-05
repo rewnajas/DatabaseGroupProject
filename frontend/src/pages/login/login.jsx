@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../lib/axios";
 import style from "./login.module.css";
 import logo from "../../assets/logo.png";
 import pic from "../../assets/weapon.png";
@@ -20,9 +20,6 @@ export default function Login() {
         {
           username: username.current.value,
           password: password.current.value,
-        },
-        {
-          withCredentials: true,
         }
       )
       .then((response) => {

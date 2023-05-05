@@ -12,7 +12,7 @@ export default function requestList(props) {
     }
     return accumulator;
   }, []);
-  console.log(uniqueWeaponInfo);
+  
 
   if (props.wishList.length === 0) {
     return null;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./searchbar.module.css";
 import useSuggestBar from "../../customHooks/useSuggestBar";
-import axios from "axios";
+import axios from "../../lib/axios";
 
 export default function Searchbar(props) {
   const [searchString, setSearchString] = useState("");
@@ -16,7 +16,7 @@ export default function Searchbar(props) {
   };
 
 const handleSearch = () =>{
-  axios.get(`http://localhost:8000/user/search${searchString}`,{withCredentials : true})
+  axios.get(`http://localhost:8000/user/search${searchString}`)
   .then((response)=>{
     props.setWeapon(response.data);
   })
