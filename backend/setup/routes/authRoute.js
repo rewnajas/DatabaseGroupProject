@@ -63,7 +63,7 @@ router.get('/getRole',async(req,res)=>{
     const [rows] = await db.query('SELECT role FROM profile WHERE username=?',[req.session.passport.user])
     if(rows.length > 0) {
         req.session.role = rows[0].role
-        return res.status(200).end()
+        return res.send({role : rows[0].role}).end()
     }
 })
 
