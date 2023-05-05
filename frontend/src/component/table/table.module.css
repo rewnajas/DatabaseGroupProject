@@ -41,3 +41,13 @@
   .container{
     height: 454px;
   }
+
+  .statusActive {
+    background-color: rgb(69, 208, 69);
+    color: black;
+  }
+  
+  .statusInactive {
+    background-color: rgb(255, 69, 69);
+    color: black;
+  }
