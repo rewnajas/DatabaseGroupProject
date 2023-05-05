@@ -6,6 +6,7 @@ import IsUser from './component/routeHandling/isUser'
 import IsAdmin from './component/routeHandling/isAdmin'
 import IsGuard from './component/routeHandling/isGuard'
 import Homepage from './pages/homepage/homepage'
+import ArmoryCheck from './pages/armoryCheck/armory'
 import Guard from './pages/guard/guard'
 import Admin from './pages/admin/admin'
 import Request from './pages/request/request'
@@ -34,7 +35,7 @@ export default function App() {
 
           <Route element={<IsGuard />}>
             <Route path='guard' element={<Navbar />}>
-              <Route index element={<Guard/>} />
+              <Route index element={<ArmoryCheck/>} />
             </Route>
           </Route>
         </Route>
