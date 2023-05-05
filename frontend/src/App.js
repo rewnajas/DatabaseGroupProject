@@ -6,6 +6,7 @@ import IsUser from './component/routeHandling/isUser'
 import IsAdmin from './component/routeHandling/isAdmin'
 import IsGuard from './component/routeHandling/isGuard'
 import Homepage from './pages/homepage/homepage'
+import Logout from './component/logout/logout'
 import ArmoryCheck from './pages/armoryCheck/armory'
 import Guard from './pages/guard/guard'
 import Admin from './pages/admin/admin'
@@ -19,6 +20,7 @@ export default function App() {
       <Routes>
         <Route exact path='/' element={<Login />} />
         <Route element={<Protected />}>
+
           
           <Route element={<IsUser />}>
             <Route path='homepage' element={<Navbar />}>
@@ -38,6 +40,8 @@ export default function App() {
               <Route index element={<ArmoryCheck/>} />
             </Route>
           </Route>
+
+          <Route path='/logout' element={<Logout/>}/>
         </Route>
 
         

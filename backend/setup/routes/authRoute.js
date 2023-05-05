@@ -19,6 +19,18 @@ router.get('/checkauth',(req,res)=>{
     return res.status(200).end()
 })
 
+router.get('/logout', (req, res) => {
+    req.logout((err)=> {
+      if (err) {
+        console.log(err);
+        res.status(500).end();
+      } else {
+        res.status(200).end();
+      }
+    });
+  });
+  
+
 router.get('/isUser',checkRole,(req,res)=>{
     if(req.session.role === 'user') {
         return res.status(200).end()
@@ -51,7 +63,7 @@ router.get('/getRole',async(req,res)=>{
     const [rows] = await db.query('SELECT role FROM profile WHERE username=?',[req.session.passport.user])
     if(rows.length > 0) {
         req.session.role = rows[0].role
-        return res.status(200).end()
+        return res.send({role : rows[0].role}).end()
     }
 })
 

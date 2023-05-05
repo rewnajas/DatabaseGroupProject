@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import logo from '../../assets/logo.png';
+import axios from '../../lib/axios'
 import style from './navbar.module.css';
 import './hamburger.css'
 
 function Navbar() {
-  
-
   const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
   const [menu_class, setMenuClass] = useState("menu hidden")
   const [isMenuClicked, setIsMenuClicked] = useState(false)
+  const [role,setRole] = useState('')
+
+  useEffect(()=>{
+    axios.get('http://localhost:8000/getRole')
+    .then(response=>setRole(response.data.role))
+  },[])
   
   const updateMenu = () => {
     if(!isMenuClicked) {
@@ -50,13 +55,22 @@ function Navbar() {
             </nav>
 
             <div className={menu_class}>
-            <Link to="/" className="navbar_slide">
+              {role === 'user' && <Link to="/homepage" className="navbar_slide">
               HOME
-            </Link>
+            </Link>}
+
+            {role === 'admin' && <Link to="/admin" className="navbar_slide">
+              HOME
+            </Link>}
+
+            {role === 'guard' && <Link to="/guard" className="navbar_slide">
+              HOME
+            </Link>}
+            
             <Link to="/profile" className="navbar_slide">
              PROFILE
            </Link>
-           <Link to="/log out" className="navbar_slide">
+           <Link to="/logout" className="navbar_slide">
               LOG OUT
             </Link>
             </div>

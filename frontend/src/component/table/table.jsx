@@ -39,7 +39,13 @@ return (
                     <td>{weapon.weaponID}</td>
                     <td>{weapon.weaponName}</td>
                     <td>{weapon.weaponType}</td>
-                    <td>{weapon.status}</td>
+                    <td
+                className={
+                  weapon.status === 1 ? style.statusActive : style.statusInactive
+                }
+              >
+                {weapon.status === 1 ? 'REMAIN' : 'WITHDRAWN'}
+              </td>
                 </tr>
             )}
           </tbody>
