@@ -56,7 +56,7 @@ function Navbar() {
             <Link to="/profile" className="navbar_slide">
              PROFILE
            </Link>
-           <Link to="/log out" className="navbar_slide">
+           <Link to="/logout" className="navbar_slide">
               LOG OUT
             </Link>
             </div>

@@ -19,6 +19,18 @@ router.get('/checkauth',(req,res)=>{
     return res.status(200).end()
 })
 
+router.get('/logout', (req, res) => {
+    req.logout((err)=> {
+      if (err) {
+        console.log(err);
+        res.status(500).end();
+      } else {
+        res.status(200).end();
+      }
+    });
+  });
+  
+
 router.get('/isUser',checkRole,(req,res)=>{
     if(req.session.role === 'user') {
         return res.status(200).end()
