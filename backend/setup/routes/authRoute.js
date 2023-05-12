@@ -31,8 +31,8 @@ router.get('/logout', (req, res) => {
   });
   
 
-router.get('/isUser',checkRole,(req,res)=>{
-    if(req.session.role === 'user') {
+router.get('/isRegular',checkRole,(req,res)=>{
+    if(req.session.role === 'regular') {
         return res.status(200).end()
     }
     return res.status(401).end()
@@ -53,18 +53,21 @@ router.get('/isGuard',checkRole,(req,res)=>{
 })
 
 router.get('/authorized',async(req,res)=>{
-    const [rows] = await db.query('SELECT role FROM profile WHERE username=?',[req.session.passport.user])
+    const [rows] = await db.query('SELECT militaryType FROM MILITARY WHERE militaryID=?',[req.session.passport.user])
     if(rows.length > 0) {
-        return res.status(200).send({role : rows[0].role})
+        console.log(rows[0].militaryType)
+        return res.status(200).send({role : rows[0].militaryType})
     }
+    return res.status(500).end()
 })
 
 router.get('/getRole',async(req,res)=>{
-    const [rows] = await db.query('SELECT role FROM profile WHERE username=?',[req.session.passport.user])
+    const [rows] = await db.query('SELECT militaryType FROM MILITARY WHERE militaryID=?',[req.session.passport.user])
     if(rows.length > 0) {
-        req.session.role = rows[0].role
-        return res.send({role : rows[0].role}).end()
+        req.session.role = rows[0].militaryType
+        return res.send({role : rows[0].militaryType}).end()
     }
+    return res.status(500).end()
 })
 
 router.use('/user',userRoute)

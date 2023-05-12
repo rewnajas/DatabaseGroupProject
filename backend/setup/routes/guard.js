@@ -9,7 +9,11 @@ router.get('/guardTest',(req,res)=>{
 })
 
 router.get('/checkArmory',async(req,res)=>{
-    const [rows] = await db.query('SELECT * FROM WEAPON')
+    const [rows] = await db.query(`SELECT WEAPON.* FROM WEAPON 
+        JOIN MILITARY ON ? = MILITARY.militaryID
+        JOIN ARMORY ON MILITARY.unitID = ARMORY.unitID 
+        WHERE WEAPON.armoryID = ARMORY.armoryID`,
+         [req.session.passport.user])
     res.send(rows).end()
 })
 

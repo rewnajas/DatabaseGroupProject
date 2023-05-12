@@ -4,7 +4,7 @@ import style from "./weaponList.module.css";
 export default function WeaponList(props) {
   const uniqueWeaponInfo = props.weaponInfo.reduce((accumulator, current) => {
     const isDuplicate = accumulator.some(
-      (item) => item.weapon_name === current.weapon_name
+      (item) => item.weaponName === current.weaponName
     );
     if (!isDuplicate) {
       accumulator.push(current);
@@ -31,9 +31,9 @@ export default function WeaponList(props) {
 
   const handleClick = (val) => {
     const newWishListItem = {
-      weapon_name: val.weapon_name,
-      weapon_type: val.weapon_type,
-      armory_name: val.armory_name,
+      weaponName: val.weaponName,
+      weaponType: val.weaponType,
+      armoryID: val.armoryID,
       amount: counts[val.weapon_name],
     };
 
@@ -41,7 +41,7 @@ export default function WeaponList(props) {
     props.setWishList(newWishList);
 
     const updatedWeaponInfo = props.weaponInfo.filter(
-      (item) => item.weapon_name !== val.weapon_name
+      (item) => item.weaponName !== val.weaponName
     );
 
     props.setWeaponInfo(updatedWeaponInfo);
@@ -79,18 +79,18 @@ export default function WeaponList(props) {
           </div>
 
           {uniqueWeaponInfo.map((val) => {
-            const count = counts[val.weapon_name] || 0;
+            const count = counts[val.weaponName] || 0;
             return (
               <>
                 <div className={style.row}>
                   <div className={style.name}>
-                    <h3>{val.weapon_name}</h3>
+                    <h3>{val.weaponName}</h3>
                   </div>
                   <div className={style.type}>
-                    <p>{val.weapon_type}</p>
+                    <p>{val.weaponType}</p>
                   </div>
                   <div className={style.armory}>
-                    <p>{val.armory_name}</p>
+                    <p>{val.armoryID}</p>
                   </div>
                   <div className={style.available}>
                     <p>{val.num_available}</p>
@@ -99,7 +99,7 @@ export default function WeaponList(props) {
                     <div className={style.amout_wrapper}>
                       <div className={style.del}>
                         <button
-                          onClick={() => handleDecrement(val.weapon_name)}
+                          onClick={() => handleDecrement(val.weaponName)}
                         >
                           <h3>-</h3>
                         </button>
@@ -110,7 +110,7 @@ export default function WeaponList(props) {
                       <div className={style.add}>
                         <button
                           onClick={() =>
-                            handleIncrement(val.weapon_name, val.num_available)
+                            handleIncrement(val.weaponName, val.num_available)
                           }
                         >
                           <h3>+</h3>

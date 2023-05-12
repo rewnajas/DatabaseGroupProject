@@ -37,13 +37,13 @@ const handleSearch = () =>{
             value={searchString}
             type="text"
             onChange={(e) => setSearchString(e.target.value)}
-            placeholder="Weapon Name"
+            placeholder="Enter Weapon Name"
             className={style.input}
           />
           {resultlist.map((val) => {
             return (
               <div onClick={() => handleClick(val)} className={style.list}>
-                {val.weapon_name}
+                {val.weaponName}
               </div>
             );
           })}

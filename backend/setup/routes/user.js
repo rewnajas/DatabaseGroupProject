@@ -1,27 +1,31 @@
 const router = require('express').Router()
-const {isUser} = require('../middleware/middleware')
+const { isUser } = require('../middleware/middleware')
 const db = require('../database-config')
 router.use(isUser)
 
-router.get('/userTest',(req,res)=>{
+router.get('/userTest', (req, res) => {
     res.status(200).end()
 })
 
-router.post('/searchRegx',async(req,res)=>{
+router.post('/searchRegx', async (req, res) => {
     const name = req.body.name
-    if(name) {
-        const [rows] = await db.query("SELECT * FROM weapons WHERE weapon_name LIKE ? ",[name + '%'])
+    if (name) {
+        const [rows] = await db.query(`SELECT WEAPON.* FROM WEAPON 
+        JOIN MILITARY ON ? = MILITARY.militaryID
+        JOIN ARMORY ON MILITARY.unitID = ARMORY.unitID 
+        WHERE WEAPON.armoryID = ARMORY.armoryID and WEAPON.weaponName LIKE ? `,
+         [req.session.passport.user,name + '%'])
         res.send(rows).end()
     }
     res.end()
 })
 
-router.get('/search:name',async(req,res)=>{
+router.get('/search:name', async (req, res) => {
     const name = req.params.name
-    const [rows] = await db.query('SELECT * FROM weapons WHERE weapon_name =?',[name])
+    const [rows] = await db.query('SELECT * FROM weapons WHERE weapon_name =?', [name])
 
     res.send(rows).end()
-    
+
 })
 
 module.exports = router

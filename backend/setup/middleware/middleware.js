@@ -15,7 +15,7 @@ function checkRole(req,res,next) {
 
 function isUser(req,res,next) {
     
-    if(req.session.role === 'user') {
+    if(req.session.role === 'regular') {
         return next()
     }
     
