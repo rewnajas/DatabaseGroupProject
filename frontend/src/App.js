@@ -37,7 +37,8 @@ export default function App() {
 
           <Route element={<IsGuard />}>
             <Route path='guard' element={<Navbar />}>
-              <Route index element={<ArmoryCheck/>} />
+              <Route index element={<h1>Guard</h1>} />
+              <Route path='armory' element={<ArmoryCheck/>}/>
             </Route>
           </Route>
 

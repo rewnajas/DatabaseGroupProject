@@ -7,7 +7,7 @@ export default function IsUser() {
   const [permission,setPermission] = useState(false)
 
   useEffect(()=>{
-    axios.get('http://localhost:8000/isUser',{
+    axios.get('http://localhost:8000/isRegular',{
       withCredentials: true
     })
     .then((response)=>{

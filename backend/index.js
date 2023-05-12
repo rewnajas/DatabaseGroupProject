@@ -10,7 +10,7 @@ const port = process.env.port
 const app = express()
 
 app.use(cors({
-    origin : 'http://localhost:3000',
+    origin : "http://localhost:3000",
     credentials : true
 }))
 app.use(bodyParser.json())
@@ -23,7 +23,6 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-
 
 app.get('/unauthorized',(req,res)=>{
     res.status(401).end()

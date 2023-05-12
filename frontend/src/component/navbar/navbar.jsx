@@ -55,7 +55,7 @@ function Navbar() {
             </nav>
 
             <div className={menu_class}>
-              {role === 'user' && <Link to="/homepage" className="navbar_slide">
+              {role === 'regular' && <Link to="/homepage" className="navbar_slide">
               HOME
             </Link>}
 

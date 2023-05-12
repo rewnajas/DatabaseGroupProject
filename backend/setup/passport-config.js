@@ -4,7 +4,7 @@ const db = require('./database-config')
 const bcrypt = require('bcryptjs')
 
 passport.use(new localStrategy(async(username,password,done)=>{
-    const [rows] = await db.query('SELECT * FROM profile WHERE username=?',[username])
+    const [rows] = await db.query('SELECT * FROM MILITARY WHERE militaryID=?',[username])
     if(rows.length > 0) {
         if(await bcrypt.compare(password,rows[0].password)) {
             return done(null,username)
@@ -14,14 +14,14 @@ passport.use(new localStrategy(async(username,password,done)=>{
 }))
 
 passport.serializeUser(async(username,done)=>{
-    const [rows] = await db.query('SELECT * FROM profile WHERE username=?',[username])
-    return rows.length>0 ? done(null,rows[0].username)
+    const [rows] = await db.query('SELECT * FROM MILITARY WHERE militaryID=?',[username])
+    return rows.length>0 ? done(null,rows[0].militaryID)
                            :done(null,false)
 })
 
 passport.deserializeUser(async(username,done)=>{
-    const [rows] = await db.query('SELECT * FROM profile WHERE username=?',[username])
-    return rows.length>0? done(null,rows[0].username)
+    const [rows] = await db.query('SELECT * FROM MILITARY WHERE militaryID=?',[username])
+    return rows.length>0? done(null,rows[0].militaryID)
                           :done(null,false)
 })
 

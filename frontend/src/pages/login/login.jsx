@@ -24,11 +24,12 @@ export default function Login() {
       )
       .then((response) => {
         if (response.status === 200) {
-          if (response.data.role === "user") {
+          console.log(response.data.role)
+          if (response.data.role === "regular") {
             navigate("/homepage");
           } else if (response.data.role === "admin") {
             navigate("/admin");
-          } else {
+          } else if(response.data.role === "guard") {
             navigate("/guard");
           }
         }
