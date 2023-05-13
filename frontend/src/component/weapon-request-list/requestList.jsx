@@ -1,17 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "../weapon-list/weaponList.module.css";
+import { Navigate, useNavigate } from 'react-router-dom';
 
-export default function requestList(props) {
-  
-  const uniqueWeaponInfo = props.wishList.reduce((accumulator, current) => {
+export default function RequestList(props) {
+  const navigate = useNavigate()
+
+  const [borrowDates, setBorrowDates] = useState({});
+
+  let uniqueWeaponInfo = props.wishList.reduce((accumulator, current) => {
     const isDuplicate = accumulator.some(
       (item) => item.weaponName === current.weaponName
     );
     if (!isDuplicate) {
-      accumulator.push(current);
+      accumulator.push({ ...current, borrowDate: borrowDates[current.weaponName] || "" });
     }
     return accumulator;
   }, []);
+
+  const handleBorrowDate = (val, borrowDate) => {
+    const updatedWeaponInfo = uniqueWeaponInfo.map((weapon) => {
+      if (weapon.weaponName === val.weaponName) {
+        return { ...weapon, borrowDate: borrowDate };
+      }
+      return weapon;
+    });
+    uniqueWeaponInfo= updatedWeaponInfo 
+    console.log(uniqueWeaponInfo)
+  };
+
+  const handleReturnDate = (val, returnDate) => {
+    const updatedWeaponInfo = uniqueWeaponInfo.map((weapon) => {
+      if (weapon.weaponName === val.weaponName) {
+        return { ...weapon, returnDate: returnDate };
+      }
+      return weapon;
+    });
+    uniqueWeaponInfo= updatedWeaponInfo 
+    console.log(uniqueWeaponInfo)
+  };
   
 
   if (props.wishList.length === 0) {
@@ -65,11 +91,11 @@ export default function requestList(props) {
               </div>
               <div className={style.count}>
                 <div className={style.amout_wrapper}>
-                  <input type="date" className={style.input_date} />
+                  <input type="date" className={style.input_date} onChange={(e) => handleBorrowDate(val, e.target.value)}/>
                 </div>
               </div>
               <div className={style.button}>
-                <input type="date" className={style.input_date} />
+                <input type="date" className={style.input_date} onChange={(e) => handleReturnDate(val, e.target.value)}/>
               </div>
               
             </div>
@@ -81,7 +107,12 @@ export default function requestList(props) {
           );
         })}
       </div>
-      <button className={style.buttonNext}>Next</button>
+     
+      <button className={style.buttonNext} 
+      onClick={()=>navigate('/homepage/submit',{state:{uniqueWeaponInfo : uniqueWeaponInfo}})}>
+        Next
+      </button>
+    
     </div>
   );
 
