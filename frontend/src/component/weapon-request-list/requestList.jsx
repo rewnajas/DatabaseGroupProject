@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "../weapon-list/weaponList.module.css";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function RequestList(props) {
   const navigate = useNavigate()

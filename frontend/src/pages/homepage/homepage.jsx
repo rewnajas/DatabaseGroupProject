@@ -1,12 +1,25 @@
 
-import React, { useEffect } from 'react'
+import React from 'react'
+import style from './homepage.module.css'
+import  Profile  from '../../component/profile/profile';
+import  Borrow  from '../../component/borrow/borrow';
+import  Findhistory  from '../../component/history/findHistory';
 
-export default function Homepage() {
-
+export default function homepage() {
   
   return (
-    <>
-     <h1>Homepage</h1>
-    </>
-  )
+    <div className={style.wrapper}>
+      <Profile />
+      <Borrow/>
+      <Findhistory/>
+    </div>
+    
+      
+    
+   
+    
+      
+ 
+ 
+);
 }

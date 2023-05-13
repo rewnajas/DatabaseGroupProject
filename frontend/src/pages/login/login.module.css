@@ -82,6 +82,7 @@ img {
   margin-top: 40px;
   position: relative;
   left: 50%;
+  font-size: 1.1rem;
   transform: translate(-50%);
   width: 200px;
   background-color: #DF2E38;
@@ -100,7 +101,7 @@ img {
 }
 
 .head  h2 {
-  font-size: 1.7em;
+  font-size: 1.7rem;
 }
 
 .info {
@@ -108,7 +109,7 @@ img {
 }
 
 .info p {
-  font-size:16.5px;
+  font-size:18.5px;
 }
 
 
