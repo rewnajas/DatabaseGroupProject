@@ -42,9 +42,17 @@ function Navbar() {
         <Link to="/" className={style.navbar_armanent}>
           ARMANENT DEPOT
         </Link>
-        <Link to="/profile" className={style.navbar_guard}>
+        {role==='guard' && <Link to="/profile" className={style.navbar_guard}>
           GUARD
-        </Link>
+        </Link>}
+
+        {role==='admin' && <Link to="/profile" className={style.navbar_guard}>
+          admin
+        </Link>}
+
+        {role==='regular' && <Link to="/profile" className={style.navbar_guard}>
+          regular
+        </Link>}
         <div >
             <nav>
                 <div className="burger-menu" onClick={updateMenu}>
