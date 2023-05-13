@@ -13,7 +13,7 @@ import Admin from './pages/admin/admin'
 import Request from './pages/request/request'
 import Navbar from './component/navbar/navbar'
 import NotFound from './component/404/notFound'
-
+import SubmitForm from './pages/submitForm/submitForm'
 export default function App() {
   return (
     <BrowserRouter>
@@ -25,7 +25,8 @@ export default function App() {
           <Route element={<IsUser />}>
             <Route path='homepage' element={<Navbar />}>
               <Route index element={<Homepage/>} />
-              <Route path='request' element={<Request />} />
+              <Route path='request' element={< Request/>} />
+              <Route path='submit' element={< SubmitForm/>} />
             </Route>
           </Route>
 

@@ -1,6 +1,6 @@
 import React from "react";
 import style from "../weapon-list/weaponList.module.css";
-
+import { Link } from 'react-router-dom';
 export default function requestList(props) {
   
   const uniqueWeaponInfo = props.wishList.reduce((accumulator, current) => {
@@ -81,7 +81,14 @@ export default function requestList(props) {
           );
         })}
       </div>
-      <button className={style.buttonNext}>Next</button>
+      <Link to={{
+      pathname: '/homepage/submit',
+      state: props.wishList,
+    }}>
+      <button className={style.buttonNext}>
+        Next
+      </button>
+    </Link>
     </div>
   );
 
