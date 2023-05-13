@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../../lib/axios'
 import React, { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 
@@ -7,9 +7,7 @@ export default function IsGuard() {
   const [permission,setPermission] = useState(false)
 
   useEffect(()=>{
-    axios.get('http://localhost:8000/IsGuard',{
-      withCredentials: true
-    })
+    axios.get('http://localhost:8000/IsGuard')
     .then((response)=>{
       if(response.status === 200) {
         setPermission(true)

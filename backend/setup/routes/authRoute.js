@@ -62,7 +62,7 @@ router.get('/authorized',async(req,res)=>{
 })
 
 router.get('/getRole',async(req,res)=>{
-    const [rows] = await db.query('SELECT militaryType FROM MILITARY WHERE militaryID=?',[req.session.passport.user])
+    const [rows] = await db.query('SELECT Fname,Lname,prefix,militaryType FROM MILITARY WHERE militaryID=?',[req.session.passport.user])
     if(rows.length > 0) {
         req.session.role = rows[0].militaryType
         return res.send({role : rows[0].militaryType}).end()

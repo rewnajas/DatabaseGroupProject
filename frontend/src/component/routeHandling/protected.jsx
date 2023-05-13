@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../../lib/axios'
 
 export default function Protected() {
   const navigate = useNavigate()
@@ -8,9 +8,7 @@ export default function Protected() {
   const [permission,setPermission] = useState(false)
 
   useEffect(()=>{
-    axios.get('http://localhost:8000/checkauth',{
-      withCredentials : true
-    })
+    axios.get('http://localhost:8000/checkauth')
     .then((response)=>{
       if(response.status === 200) {
         setPermission(true)
