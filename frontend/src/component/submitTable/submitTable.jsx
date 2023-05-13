@@ -30,38 +30,35 @@ export default function SubmitTable() {
           </div>
         </div>
 
-        {weapon.map((val)=>{
-            return (
-                <>
-                 <div className={style.row}>
-          <div>
-            <p>{val.amount}</p>
-          </div>
-          <div>
-            <p>{val.weaponName}</p>
-          </div>
-          <div>
-            <p>{val.weaponType}</p>
-          </div>
-          <div>
-            <p>{val.armoryName}</p>
-          </div>
-          <div>
-            <p>{val.borrowDate}</p>
-          </div>
-          <div>
-            <p>{val.returnDate}</p>
-          </div>
-          
-        </div>
-        <hr className={style.hr} />
-                </>
-            )
+        {weapon.map((val) => {
+          return (
+            <>
+              <div className={style.row}>
+                <div>
+                  <p>{val.amount}</p>
+                </div>
+                <div>
+                  <p>{val.weaponName}</p>
+                </div>
+                <div>
+                  <p>{val.weaponType}</p>
+                </div>
+                <div>
+                  <p>{val.armoryName}</p>
+                </div>
+                <div>
+                  <p>{val.borrowDate}</p>
+                </div>
+                <div>
+                  <p>{val.returnDate}</p>
+                </div>
+              </div>
+              <hr className={style.hr} />
+            </>
+          );
         })}
-
-       
-
       </div>
+
     </div>
   );
 }
