@@ -46,12 +46,6 @@ export default function App() {
           <Route path='/logout' element={<Logout/>}/>
         </Route>
 
-        
-
-        
-
-        
-
         <Route path='*' element={<NotFound/>} />
       </Routes>
     </BrowserRouter>

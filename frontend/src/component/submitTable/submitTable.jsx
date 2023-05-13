@@ -10,14 +10,14 @@ export default function SubmitTable() {
     <div className={style.wrapper}>
       <div className={style.table_wrapper}>
         <div className={style.row}>
-          <div className={style.name}>
-            <h2>Weapon ID</h2>
-          </div>
           <div className={style.type}>
             <h2>Weapon name</h2>
           </div>
           <div className={style.armory}>
             <h2>weapon type</h2>
+          </div>
+          <div className={style.name}>
+            <h2>amount</h2>
           </div>
           <div className={style.available}>
             <h2>armory name</h2>
@@ -34,14 +34,15 @@ export default function SubmitTable() {
           return (
             <>
               <div className={style.row}>
-                <div>
-                  <p>{val.amount}</p>
-                </div>
+                
                 <div>
                   <p>{val.weaponName}</p>
                 </div>
                 <div>
                   <p>{val.weaponType}</p>
+                </div>
+                <div>
+                  <p>{val.amount}</p>
                 </div>
                 <div>
                   <p>{val.armoryName}</p>
