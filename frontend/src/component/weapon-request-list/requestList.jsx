@@ -5,7 +5,7 @@ export default function requestList(props) {
   
   const uniqueWeaponInfo = props.wishList.reduce((accumulator, current) => {
     const isDuplicate = accumulator.some(
-      (item) => item.weapon_name === current.weapon_name
+      (item) => item.weaponName === current.weaponName
     );
     if (!isDuplicate) {
       accumulator.push(current);
@@ -52,13 +52,13 @@ export default function requestList(props) {
             <>
             <div className={style.row}>
               <div className={style.name}>
-                <h3>{val.weapon_name}</h3>
+                <h3>{val.weaponName}</h3>
               </div>
               <div className={style.type}>
-                <p>{val.weapon_type}</p>
+                <p>{val.weaponType}</p>
               </div>
               <div className={style.armory}>
-                <p>{val.armory_name}</p>
+                <p>{val.armoryName}</p>
               </div>
               <div className={style.available}>
                 <p>{val.amount}</p>

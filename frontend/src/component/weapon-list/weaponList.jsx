@@ -33,8 +33,8 @@ export default function WeaponList(props) {
     const newWishListItem = {
       weaponName: val.weaponName,
       weaponType: val.weaponType,
-      armoryID: val.armoryID,
-      amount: counts[val.weapon_name],
+      armoryName: val.armoryName,
+      amount: counts[val.weaponName],
     };
 
     const newWishList = [...props.wishList, newWishListItem];
@@ -90,7 +90,7 @@ export default function WeaponList(props) {
                     <p>{val.weaponType}</p>
                   </div>
                   <div className={style.armory}>
-                    <p>{val.armoryID}</p>
+                    <p>{val.armoryName}</p>
                   </div>
                   <div className={style.available}>
                     <p>{val.num_available}</p>
