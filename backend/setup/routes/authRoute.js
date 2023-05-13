@@ -70,6 +70,13 @@ router.get('/getRole',async(req,res)=>{
     return res.status(500).end()
 })
 
+router.post('/borrow',(req,res)=>{
+    console.log(req.body.weapon)
+    console.log(req.body.reason)
+
+    res.end
+})
+
 router.use('/user',userRoute)
 router.use('/admin',adminRoute)
 router.use('/guard',guardRoute)
