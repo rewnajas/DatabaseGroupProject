@@ -1,11 +1,11 @@
 import React from "react";
 import style from "./submitTable.module.css";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 export default function SubmitTable() {
-    const location = useLocation();
-  const myState = location.state;
-  console.log(myState)
+  const location = useLocation();
+  const weapon = location.state.uniqueWeaponInfo;
+
   return (
     <div className={style.wrapper}>
       <div className={style.table_wrapper}>
@@ -30,49 +30,37 @@ export default function SubmitTable() {
           </div>
         </div>
 
-        <div className={style.row}>
+        {weapon.map((val)=>{
+            return (
+                <>
+                 <div className={style.row}>
           <div>
-            <p>661</p>
+            <p>{val.amount}</p>
           </div>
           <div>
-            <p>อาร์พีจี-7</p>
+            <p>{val.weaponName}</p>
           </div>
           <div>
-            <p>อาร์พีจี</p>
+            <p>{val.weaponType}</p>
           </div>
           <div>
-            <p>คลังกรมสรรพาวุธทหารบก</p>
+            <p>{val.armoryName}</p>
           </div>
           <div>
-            <p>5/13/2021</p>
+            <p>{val.borrowDate}</p>
           </div>
           <div>
-            <p>5/13/2021</p>
+            <p>{val.returnDate}</p>
           </div>
           
         </div>
         <hr className={style.hr} />
+                </>
+            )
+        })}
 
-        <div className={style.row}>
-          <div>
-            <p>661</p>
-          </div>
-          <div>
-            <p>อาร์พีจี-7</p>
-          </div>
-          <div>
-            <p>อาร์พีจี</p>
-          </div>
-          <div>
-            <p>คลังกรมสรรพาวุธทหารบก</p>
-          </div>
-          <div>
-            <p>5/13/2021</p>
-          </div>
-          <div>
-            <p>5/13/2021</p>
-          </div>
-        </div>
+       
+
       </div>
     </div>
   );
