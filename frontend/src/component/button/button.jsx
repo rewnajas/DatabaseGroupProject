@@ -1,19 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from './button.module.css'
 import { useNavigate } from 'react-router-dom'
 
-export default function Button() {
+export default function Button(props) {
   const navigate = useNavigate()
+  
+  
 
   const handleConfirmClick = () => {
-    alert('your request have been record')
-    navigate('/homepage')
+    props.setSubmit(true)
   }
 
   return (
     <div className={style.wrapper}>
       <div className={style.button_wrapper}>
-        <button onClick={() => navigate('/homepage/request')}>
+        <button onClick={() => navigate('/request')}>
           return
         </button>
       </div>

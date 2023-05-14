@@ -2,9 +2,11 @@ import React from "react";
 import style from "./submitTable.module.css";
 import { useLocation } from "react-router-dom";
 
-export default function SubmitTable() {
+export default function SubmitTable(props) {
   const location = useLocation();
   const weapon = location.state.uniqueWeaponInfo;
+
+  props.setWeapon(weapon)
 
   return (
     <div className={style.wrapper}>

@@ -25,8 +25,7 @@ export default function App() {
           <Route element={<IsUser />}>
             <Route path='homepage' element={<Navbar />}>
               <Route index element={<Homepage/>} />
-              <Route path='request' element={< Request/>} />
-              <Route path='submit' element={< SubmitForm/>} />
+              
             </Route>
           </Route>
 
@@ -42,6 +41,13 @@ export default function App() {
               <Route path='armory' element={<ArmoryCheck/>}/>
             </Route>
           </Route>
+
+          <Route path='request' element={<Navbar/>}>
+          <Route  index element={< Request/>} />
+          <Route path='submit' element={< SubmitForm/>} />
+          </Route>
+
+          
 
           <Route path='/logout' element={<Logout/>}/>
         </Route>

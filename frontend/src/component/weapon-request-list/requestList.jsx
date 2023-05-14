@@ -109,7 +109,7 @@ export default function RequestList(props) {
       </div>
      
       <button className={style.buttonNext} 
-      onClick={()=>navigate('/homepage/submit',{state:{uniqueWeaponInfo : uniqueWeaponInfo}})}>
+      onClick={()=>navigate('/request/submit',{state:{uniqueWeaponInfo : uniqueWeaponInfo}})}>
         Next
       </button>
     
