@@ -7,7 +7,7 @@ export default function Searchbar(props) {
   const [searchString, setSearchString] = useState("");
   const [resultlist] = useSuggestBar(
     searchString,
-    "http://localhost:8000/user/searchRegx"
+    "http://localhost:8000/searchRegx"
   );
 
   const handleClick = (val) => {
