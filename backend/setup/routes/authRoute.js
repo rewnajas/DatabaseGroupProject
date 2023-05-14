@@ -71,10 +71,8 @@ router.get('/getRole', async (req, res) => {
 })
 
 router.post('/borrow', async (req, res) => {
-    console.log(req.body.weapon)
-    console.log(req.body.reason)
-
     const weaponList = req.body.weapon
+    console.log(weaponList)
 
     /*try {
         weaponList.map((val) => {
@@ -85,15 +83,6 @@ router.post('/borrow', async (req, res) => {
         console.log(err)
         res.status(500).end()
     }*/
-
-    try {
-        db.query(`insert into borrow(unitID,weaponID,borrowDate,returnDate,borrowStatus,returnStatus,borrowID,borrowReason)
-        VALUES ()`)
-        
-    } catch (err) {
-        console.log(err)
-        res.status(500).end()
-    }
 
     res.status(200).end()
 
