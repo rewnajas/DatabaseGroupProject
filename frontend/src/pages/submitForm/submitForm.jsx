@@ -21,6 +21,10 @@ export default function SubmitForm() {
           alert('Your request have been recorded')
           navigate('/homepage')
         }
+      }).catch((err)=>{
+        console.log(err)
+        alert('Failed to send your request, please try again')
+        navigate('/homepage')
       })
     }
   },[submit])
