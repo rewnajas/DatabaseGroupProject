@@ -1,5 +1,5 @@
 const router = require('express').Router()
-
+const db = require('../database-config')
 
 router.post('/borrow', async (req, res) => {
     const weaponList = req.body.weapon
@@ -33,7 +33,7 @@ router.post('/borrow', async (req, res) => {
             weaponObj.push(obj)
         } else if(rows.length === 2) {
             console.log('here')
-            obj1 = {
+            let obj1 = {
                 weaponID : rows[0].weaponID,
                 borrowDate : val.borrowDate,
                 returnDate : val.returnDate
@@ -98,4 +98,5 @@ router.get('/search:name', async (req, res) => {
     const [rows] = await db.query('SELECT * FROM weapons WHERE weapon_name =?', [name])
     res.send(rows).end()
 })
+
 module.exports = router

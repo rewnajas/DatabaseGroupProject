@@ -2,7 +2,6 @@ function checkAuth(req,res,next) {
     if(req.isAuthenticated()) {
         return next()
     }
-    
     return res.status(401).end()
 }
 
@@ -14,11 +13,9 @@ function checkRole(req,res,next) {
 }
 
 function isUser(req,res,next) {
-    
     if(req.session.role === 'regular') {
         return next()
     }
-    
     return res.status(401).end()
 }
 
