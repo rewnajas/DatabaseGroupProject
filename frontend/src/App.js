@@ -19,40 +19,36 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path='/' element={<Login />} />
-        <Route element={<Protected />}>
+          <Route element={<Protected />}>
 
-          
           <Route element={<IsUser />}>
             <Route path='homepage' element={<Navbar />}>
-              <Route index element={<Homepage/>} />
-              
+              <Route index element={<Homepage />} />
             </Route>
           </Route>
 
           <Route element={<IsAdmin />}>
             <Route path='admin' element={<Navbar />}>
-              <Route index element={<Admin/>} />
+              <Route index element={<Admin />} />
             </Route>
           </Route>
 
           <Route element={<IsGuard />}>
             <Route path='guard' element={<Navbar />}>
-              <Route index element={<Guard/>} />
-              <Route path='armory' element={<ArmoryCheck/>}/>
+              <Route index element={<Guard />} />
+              <Route path='armory' element={<ArmoryCheck />} />
             </Route>
           </Route>
 
-          <Route path='request' element={<Navbar/>}>
-          <Route  index element={< Request/>} />
-          <Route path='submit' element={< SubmitForm/>} />
+          <Route path='request' element={<Navbar />}>
+            <Route index element={< Request />} />
+            <Route path='submit' element={< SubmitForm />} />
           </Route>
 
-          
-
-          <Route path='/logout' element={<Logout/>}/>
+          <Route path='/logout' element={<Logout />} />
         </Route>
 
-        <Route path='*' element={<NotFound/>} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
