@@ -1,5 +1,5 @@
 import React , { useEffect , useState} from 'react';
-import axios from '../../lib/axios';
+import axios from '../../../lib/axios'
 import style from "./table.module.css"
 
 function Table() {
