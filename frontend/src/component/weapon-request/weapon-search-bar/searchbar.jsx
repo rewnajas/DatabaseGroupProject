@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./searchbar.module.css";
-import useSuggestBar from "../../customHooks/useSuggestBar";
-import axios from "../../lib/axios";
+import useSuggestBar from "../../../customHooks/useSuggestBar";
+import axios from '../../../lib/axios'
 
 export default function Searchbar(props) {
   const [searchString, setSearchString] = useState("");
