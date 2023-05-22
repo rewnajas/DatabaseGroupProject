@@ -19,8 +19,8 @@ describe('Testing a login api', () => {
 
     it('should return 200 status and reached /authorized endpoint with a valid username and password', ((done) => {
         agent.post('/login').send({
-            username: 'admin',
-            password: 'admin'
+            username: '66000001',
+            password: '1234'
         }).expect(302).expect('Location', '/authorized').end((err, res) => {
             if (err) return done(err)
             agent.get('/checkauth').expect(200).end((err, res) => {
@@ -39,8 +39,8 @@ describe('Test each role api',()=>{
 
     it('Test a valid user api',(done)=>{
         agent.post('/login').send({
-            username: 'user',
-            password: 'user'
+            username: '66000002',
+            password: '1234'
         }).expect(302).expect('Location', '/authorized').end((err, res) => {
             if (err) return done(err)
             agent.get('/getRole').expect(200).end((err, res) => {
@@ -56,8 +56,8 @@ describe('Test each role api',()=>{
 
     it('Test a valid admin api',(done)=>{
         agent.post('/login').send({
-            username: 'admin',
-            password: 'admin'
+            username: '66000001',
+            password: '1234'
         }).expect(302).expect('Location', '/authorized').end((err, res) => {
             if (err) return done(err)
             agent.get('/getRole').expect(200).end((err, res) => {
@@ -73,8 +73,8 @@ describe('Test each role api',()=>{
 
     it('Test a valid guard api',(done)=>{
         agent.post('/login').send({
-            username: 'guard',
-            password: 'guard'
+            username: '66000003',
+            password: '1234'
         }).expect(302).expect('Location', '/authorized').end((err, res) => {
             if (err) return done(err)
             agent.get('/getRole').expect(200).end((err, res) => {

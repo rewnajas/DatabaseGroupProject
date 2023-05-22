@@ -38,8 +38,6 @@ app.post('/login',passport.authenticate('local',{
 
 app.use(authRouter)
 
-app.listen(port,()=>{
-    console.log(`Listening on port ${port}`)
-})
+app.listen(port,()=>console.log(`Listening on port ${port}`))
 
 module.exports = app

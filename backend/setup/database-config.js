@@ -9,9 +9,9 @@ const connection = mysql.createConnection({
 }).promise()
 
 connection.ping()
-.then(() => console.log('Connected to the MySQL database.')
+.then(() => console.log('Connected to MySQL database.')
 )
-.catch(err => console.log('Error connecting to the MySQL database:', err)
+.catch(err => console.log('Error connecting to MySQL database:', err)
 );
 
 module.exports = connection
