@@ -1,8 +1,8 @@
 import React ,{useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import SubmitTable from '../../component/submitTable/submitTable'
-import TextBox from '../../component/textbox/textbox'
-import Button from '../../component/button/button'
+import SubmitTable from '../../component/submit-request/submitTable/submitTable'
+import TextBox from '../../component/submit-request/textbox/textbox'
+import Button from '../../component/submit-request/button/button'
 import axios from '../../lib/axios'
 
 export default function SubmitForm() {

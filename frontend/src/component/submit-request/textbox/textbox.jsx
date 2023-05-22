@@ -1,4 +1,4 @@
-import React,{useRef, useState} from 'react'
+import React from 'react'
 import style from './textbox.module.css'
 
 export default function Textbox(props) {
