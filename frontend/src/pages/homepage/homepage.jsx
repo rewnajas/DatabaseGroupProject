@@ -1,9 +1,9 @@
 
 import React from 'react'
 import style from './homepage.module.css'
-import  Profile  from '../../component/profile/profile';
-import  Borrow  from '../../component/borrow/borrow';
-import  Findhistory  from '../../component/history/findHistory';
+import Profile  from '../../component/landing-page/profile/profile';
+import Borrow  from '../../component/landing-page/borrow/borrow';
+import Findhistory  from '../../component/landing-page/history/findHistory';
 
 export default function homepage() {
   

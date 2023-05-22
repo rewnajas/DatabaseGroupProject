@@ -1,10 +1,10 @@
 import React from 'react'
 import style from './guard.module.css'
-import  Profile  from '../../component/profile/profile';
-import  Borrow  from '../../component/borrow/borrow';
-import  Findhistory  from '../../component/history/findHistory';
-import DeliverWeapon from '../../component/deliverWeapon/deliverWeapon';
-import ReturnWeapon from '../../component/returnWeapon/returnWeapon';
+import Profile from '../../component/landing-page/profile/profile'
+import Borrow from '../../component/landing-page/borrow/borrow'
+import Findhistory from '../../component/landing-page/history/findHistory'
+import DeliverWeapon from '../../component/landing-page/deliverWeapon/deliverWeapon'
+import ReturnWeapon from '../../component/landing-page/returnWeapon/returnWeapon'
 
 export default function guard() {
   return (
