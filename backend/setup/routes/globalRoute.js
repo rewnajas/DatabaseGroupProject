@@ -46,7 +46,12 @@ router.post('/borrow', async (req, res) => {
         }
 
         const [l] = await db.query('SELECT * FROM borrow')
-        const i = l[l.length-1].borrowID
+
+        let i = 0
+        if(l.length > 0) {
+             i = l[l.length-1].borrowID
+        }
+        
 
         weaponObj.map((val)=>{
             db.query(`INSERT INTO borrow 
@@ -67,7 +72,7 @@ router.post('/borrow', async (req, res) => {
        
     })
 
-    res.status(200).end()
+   res.send({role : req.session.role})
 
 })
 

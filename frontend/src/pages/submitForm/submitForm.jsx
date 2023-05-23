@@ -12,7 +12,6 @@ export default function SubmitForm() {
   const [reason,setReason] = useState('')
 
   useEffect(()=>{
-    console.log(reason)
     if(submit) {
       axios.post('http://localhost:8000/borrow',{
         weapon : weapon,
@@ -20,7 +19,10 @@ export default function SubmitForm() {
       }).then((response)=>{
         if(response.status === 200) {
           alert('Your request have been recorded')
-          navigate('/homepage')
+          
+          if(response.data.role === 'regular') navigate('/homepage')
+          if(response.data.role === 'admin') navigate('/admin')
+          if(response.data.role === 'guard') navigate('/guard')
         }
       }).catch((err)=>{
         console.log(err)
