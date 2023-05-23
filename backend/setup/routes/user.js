@@ -8,5 +8,4 @@ router.get('/userTest', (req, res) => {
 })
 
 
-
 module.exports = router
