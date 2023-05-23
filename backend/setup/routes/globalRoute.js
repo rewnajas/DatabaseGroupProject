@@ -3,7 +3,8 @@ const db = require('../database-config')
 
 router.post('/borrow', async (req, res) => {
     const weaponList = req.body.weapon
-    /*try {
+    
+    try {
         weaponList.map((val) => {
             db.query(`UPDATE WEAPON set status = 0 WHERE WEAPON.weaponName=? LIMIT ?`,
                 [val.weaponName, val.amount])
@@ -11,13 +12,9 @@ router.post('/borrow', async (req, res) => {
     } catch (err) {
         console.log(err)
         res.status(500).end()
-    }*/
+    }
 
-    const unitID = await db.query('SELECT unitID FROM MILITARY WHERE militaryID=?',[
-        req.session.passport.user
-    ])
-
-    const weaponObj = [{}]
+    const weaponObj = []
     let obj = {}
     weaponList.map(async(val)=>{
         const [rows] = await db.query('SELECT weaponID FROM WEAPON WHERE weaponName=? LIMIT ?',[
@@ -32,7 +29,6 @@ router.post('/borrow', async (req, res) => {
             }
             weaponObj.push(obj)
         } else if(rows.length === 2) {
-            console.log('here')
             let obj1 = {
                 weaponID : rows[0].weaponID,
                 borrowDate : val.borrowDate,
@@ -49,24 +45,25 @@ router.post('/borrow', async (req, res) => {
             
         }
 
-        console.log(weaponObj)
-
         let i = 0
 
         weaponObj.map((val)=>{
-            db.query(`INSERT INTO borrow (unitID,weaponID,borrowDate,returnDate,borrowStatus,returnStatus,borrowID,borrowReason)
-            VALUES (?,?,?,?,?,?,?)`,[
-                unitID,
+            db.query(`INSERT INTO borrow 
+            (militaryID,weaponID,borrowDate,returnDate,borrowStatus,returnStatus,borrowID,borrowReason)
+            VALUES (?,?,?,?,?,?,?,?)`,[
+                req.session.passport.user,
                 val.weaponID,
                 val.borrowDate,
                 val.returnDate,
                 'asdf',
                 'd',
                 i,
-                weaponList.borrowReason
+                req.body.reason
             ])
             i++
         })
+
+       
     })
 
     res.status(200).end()
