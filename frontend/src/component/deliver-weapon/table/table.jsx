@@ -70,8 +70,6 @@ function Table() {
         );
         setBorrowList(updatedList);
       };
-
-  
     return (
       <>
         <table className={style.dataTable}>
