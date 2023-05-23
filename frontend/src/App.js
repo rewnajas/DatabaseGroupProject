@@ -15,6 +15,8 @@ import Navbar from './component/navbar/navbar'
 import NotFound from './component/404/notFound'
 import SubmitForm from './pages/submitForm/submitForm'
 import Profile from './pages/profile/profile'
+import CheckRequest from './pages/check-request/checkRequest'
+import DeliverWeapon from './pages/deliver-weapon/deliverWeapon'
 
 export default function App() {
   return (
@@ -32,6 +34,7 @@ export default function App() {
           <Route element={<IsAdmin />}>
             <Route path='admin' element={<Navbar />}>
               <Route index element={<Admin />} />
+              <Route path='check-request' element={<CheckRequest/>}/>
             </Route>
           </Route>
 
@@ -39,6 +42,7 @@ export default function App() {
             <Route path='guard' element={<Navbar />}>
               <Route index element={<Guard />} />
               <Route path='armory' element={<ArmoryCheck />} />
+              <Route path='deliver-weapon' element={<DeliverWeapon/>}/>
             </Route>
           </Route>
 
