@@ -45,7 +45,8 @@ router.post('/borrow', async (req, res) => {
             
         }
 
-        let i = 0
+        const [l] = await db.query('SELECT * FROM borrow')
+        const i = l[l.length-1].borrowID
 
         weaponObj.map((val)=>{
             db.query(`INSERT INTO borrow 
@@ -55,12 +56,12 @@ router.post('/borrow', async (req, res) => {
                 val.weaponID,
                 val.borrowDate,
                 val.returnDate,
-                'asdf',
-                'd',
-                i,
+                'รออนุมัติ',
+                'รอส่งมอบ',
+                ++i,
                 req.body.reason
             ])
-            i++
+            
         })
 
        
@@ -95,5 +96,40 @@ router.get('/search:name', async (req, res) => {
     const [rows] = await db.query('SELECT * FROM weapons WHERE weapon_name =?', [name])
     res.send(rows).end()
 })
+
+router.get('/profilename', async (req, res) => {
+    var result = await db.query('SELECT prefix FROM MILITARY WHERE militaryID = ?', [req.session.passport.user]);
+    var name = result[0][0].prefix;
+
+    result = await db.query('SELECT Fname FROM MILITARY WHERE militaryID = ?', [req.session.passport.user]);
+    name = name + result[0][0].Fname;
+
+    result = await db.query('SELECT Lname FROM MILITARY WHERE militaryID = ?', [req.session.passport.user]);
+    name = name + " " + result[0][0].Lname;
+    res.send(name);
+});
+
+router.get('/profileid', async (req, res) => {
+    var id = "Military ID: " + req.session.passport.user;
+    res.send(id);
+});
+
+router.get('/profilemforce', async (req, res) => {
+    var result = await db.query('SELECT affiliation FROM MILITARY WHERE militaryID = ?', [req.session.passport.user]);
+    var mforce = result[0][0].affiliation;
+
+    result = await db.query('SELECT militaryForce FROM MILITARY WHERE militaryID = ?', [req.session.passport.user]);
+    mforce = mforce + " " + result[0][0].militaryForce;
+
+    res.send(mforce);
+});
+
+router.get('/department', async (req, res) => {
+    var result = await db.query('SELECT department FROM UNIT JOIN MILITARY ON UNIT.unitID = MILITARY.unitID WHERE militaryID = ?', [req.session.passport.user]);
+    var d = result[0][0].department;
+    d = "สังกัด" + d
+
+    res.send(d);
+});
 
 module.exports = router

@@ -14,6 +14,8 @@ import Request from './pages/request/request'
 import Navbar from './component/navbar/navbar'
 import NotFound from './component/404/notFound'
 import SubmitForm from './pages/submitForm/submitForm'
+import Profile from './pages/profile/profile'
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -43,6 +45,10 @@ export default function App() {
           <Route path='request' element={<Navbar />}>
             <Route index element={< Request />} />
             <Route path='submit' element={< SubmitForm />} />
+          </Route>
+
+          <Route path='profile' element={<Navbar/>}>
+          <Route  index element={<Profile/>} />
           </Route>
 
           <Route path='/logout' element={<Logout />} />
