@@ -12,6 +12,7 @@ export default function SubmitForm() {
   const [reason,setReason] = useState('')
 
   useEffect(()=>{
+    console.log(reason)
     if(submit) {
       axios.post('http://localhost:8000/borrow',{
         weapon : weapon,
