@@ -1,43 +1,30 @@
 const router = require('express').Router()
-const db1 = require('../database-config')
+const db = require('../database-config')
 const mysql = require('mysql2')
 const { isGuard } = require('../middleware/middleware')
 
 router.use(isGuard)
 
-const db = mysql.createConnection({
-    user: "sql12619821",
-    host: "sql12.freemysqlhosting.net",
-    password: "x4C185hCe4",
-    database: "sql12619821"
-})
+router.get('/borrow', async(req, res) => {
+    try {
+        const [rows] = await db.query(`SELECT armoryID FROM guard WHERE militaryID=?`,[
+            req.session.passport.user
+        ])
+        console.log(rows)
+        const guardID = rows[0].armoryID
 
+        const [result] = await db.query(`SELECT * FROM borrow JOIN MILITARY ON 
+        borrow.militaryID = MILITARY.militaryID 
+        JOIN WEAPON ON borrow.weaponID = WEAPON.weaponID
+        WHERE borrow.borrowStatus = ? `, ['pending'])
 
-router.get('/borrow', (req, res) => {
-    db.query(`SELECT armoryID FROM guard WHERE militaryID=? `, [
-        req.session.passport.user
-    ], (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            guardID = result[0].armoryID
-            console.log(guardID)
-            db.query(`SELECT * FROM borrow JOIN MILITARY ON 
-                    borrow.militaryID = MILITARY.militaryID 
-                    JOIN WEAPON ON borrow.weaponID = WEAPON.weaponID
-                    WHERE borrow.borrowStatus = ? `, [ 'pending'], (err, result) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log(result)
-                    res.send(result);
-                    
-                }
-            });
-        }
-    })
-
-
+        console.log(result)
+        res.send(result);
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).end()
+    }
 });
 
 router.post('/updatedata', (req, res) => {
@@ -45,32 +32,37 @@ router.post('/updatedata', (req, res) => {
     const weapon = req.body.weapon;
     const attributeValue = req.body.attribute;
 
-    const sql = `UPDATE borrow SET borrow.borrowStatus = ? WHERE borrow.militaryID = ? AND borrow.weaponID = ?`;
-
-    db.query(sql, [attributeValue, key, weapon], (error, result) => {
-        if (error) {
-            console.error('Error updating borrowStatus:', error);
-            res.status(500).json({ error: 'Error updating borrowStatus' });
-        } else {
+    try {
+        db.query(`UPDATE borrow SET borrow.borrowStatus = ? 
+        WHERE borrow.militaryID = ? AND borrow.weaponID = ?`,[
+            attributeValue, key, weapon
+        ])
+        .then(()=>{
             console.log('Borrow status updated successfully');
             res.sendStatus(200);
-        }
-    });
+        })
+
+    } catch (error) {
+        console.error('Error updating borrowStatus:', error);
+        res.status(500).json({ error: 'Error updating borrowStatus' });
+    }
 });
 
-router.post("/countjoinrows", (req, res) => {
+router.post("/countjoinrows", async (req, res) => {
     const { key, weapon } = req.body;
-
-    const query = `SELECT COUNT(*) AS count FROM borrow WHERE borrow.militaryID = ? AND borrow.weaponID = ?`;
-    db.query(query, [key, weapon], (error, results) => {
-        if (error) {
-            console.error("Error counting join rows:", error);
-            res.status(500).json({ error: "An error occurred while counting join rows." });
-        } else {
+    try {
+        const [results] = await db.query(`SELECT COUNT(*) AS count 
+            FROM borrow WHERE borrow.militaryID = ? AND borrow.weaponID = ?`, [
+            key, weapon
+        ])
             const count = results[0].count;
             res.status(200).json({ count });
-        }
-    });
+        
+
+    } catch (error) {
+        console.error("Error counting join rows:", error);
+        res.status(500).json({ error: "An error occurred while counting join rows." });
+    }
 });
 
 router.get('/checkArmory', async (req, res) => {
@@ -82,4 +74,16 @@ router.get('/checkArmory', async (req, res) => {
     res.send(rows).end()
 })
 
+router.get('/return',async (req, res) => {
+    try {
+        const [result] = await db.query(`SELECT * FROM borrow JOIN MILITARY ON 
+        borrow.militaryID = MILITARY.militaryID WHERE borrow.militaryID = ? 
+        AND borrow.returnStatus = ?` ['รอส่งมอบ',66000002])
+        res.send(result);
+        
+    } catch (error) {
+        console.log(error);
+    }
+     
+});
 module.exports = router
