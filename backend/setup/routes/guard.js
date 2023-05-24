@@ -16,7 +16,7 @@ router.get('/borrow', async(req, res) => {
         const [result] = await db.query(`SELECT * FROM borrow JOIN MILITARY ON 
         borrow.militaryID = MILITARY.militaryID 
         JOIN WEAPON ON borrow.weaponID = WEAPON.weaponID
-        WHERE borrow.borrowStatus = ? `, ['pending'])
+        WHERE borrow.borrowStatus = ? `, ['รออนุมัติ'])
 
         console.log(result)
         res.send(result);
@@ -76,13 +76,23 @@ router.get('/checkArmory', async (req, res) => {
 
 router.get('/return',async (req, res) => {
     try {
+        const [rows] = await db.query(`SELECT armoryID FROM guard WHERE militaryID=?`,[
+            req.session.passport.user
+        ])
+        console.log(rows)
+        const guardID = rows[0].armoryID
+
         const [result] = await db.query(`SELECT * FROM borrow JOIN MILITARY ON 
-        borrow.militaryID = MILITARY.militaryID WHERE borrow.militaryID = ? 
-        AND borrow.returnStatus = ?` ['รอส่งมอบ',66000002])
+        borrow.militaryID = MILITARY.militaryID 
+        JOIN WEAPON ON borrow.weaponID = WEAPON.weaponID
+        WHERE borrow.returnStatus = ? `, ['รอส่งมอบ'])
+
+        console.log(result)
         res.send(result);
         
     } catch (error) {
         console.log(error);
+        res.status(500).end()
     }
      
 });
