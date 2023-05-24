@@ -1,34 +1,35 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import style from './table.module.css';
-import axios from '../../../lib/axios';
+import axios from "../../../lib/axios";
 
 function Table() {
-    const [borrowList, setBorrowList] = useState([]);
+    const [returnList, setReturnList] = useState([]);
     const [joinRowCount, setJoinRowCount] = useState(0);
   
     useEffect(() => {
-      getBorrowList();
+      getReturnList();
       countJoinRows();
     }, []);
   
-    function getBorrowList() {
-      axios.get("http://localhost:8000/guard/borrow").then((response) => {
-        setBorrowList(response.data);
+    function getReturnList() {
+      axios.get("http://localhost:8000/guard/return").then((response) => {
+        setReturnList(response.data);
       });
     }
   
     const handleButtonClick = (id, weapon)=> {
-        const updatedStatus = borrowList.map((item) => {
+        const updatedStatus = returnList.map((item) => {
           if (item.militaryID === id && item.weaponID === weapon) {
-            return { ...item, borrowStatus: !item.borrowStatus ? 1 : 0 };
+            return { ...item, returnStatus: !item.returnStatus ? 1 : 0 };
           }
           return item;
         });
     
-        setBorrowList(updatedStatus);
+        setReturnList(updatedStatus);
     
         axios
-          .post("http://localhost:8000/guard/updatedata", { key: id, weapon: weapon, attribute: "อนุมัติ" })
+          .post("http://localhost:8000/guard/updatedata", { key: id, weapon: weapon, attribute: "ส่งมอบ" })
           .then((response) => {
             console.log("Data updated successfully");
           })
@@ -51,24 +52,26 @@ function Table() {
 
       useEffect(() => {
         const fetchJoinCounts = async () => {
-          const updatedBorrowList = await Promise.all(
-            borrowList.map(async (item) => {
+          const updatedReturnList = await Promise.all(
+            returnList.map(async (item) => {
               const count = await countJoinRows(item.militaryID, item.weaponID);
               return { ...item, totalAmount: count };
             })
           );
-          setBorrowList(updatedBorrowList);
+          setReturnList(updatedReturnList);
         };
     
         fetchJoinCounts();
-      }, [borrowList]);
+      }, [returnList]);
 
       const handleButtonDisappear = (id, weapon) => {
-        const updatedList = borrowList.filter(
+        const updatedList = returnList.filter(
           (item) => !(item.militaryID === id && item.weaponID === weapon)
         );
-        setBorrowList(updatedList);
+        setReturnList(updatedList);
       };
+
+  
     return (
       <>
         <table className={style.dataTable}>
@@ -84,7 +87,7 @@ function Table() {
             </tr>
           </thead>
           <tbody>
-            {borrowList.map((val, key) => (
+            {returnList.map((val, key) => (
               <tr key={key}>
                 <td>{val.militaryID}</td>
                 <td>
@@ -97,7 +100,7 @@ function Table() {
                 <td>
                   <div>
                   <button onClick={() => handleButtonClick(val.militaryID, val.weaponID)}>
-                  {val.borrowStatus ? "ส่งมอบ" : "เสร็จสิ้น"}
+                  {val.returnStatus ? "ส่งคืน" : "เสร็จสิ้น"}
                 </button>
                   </div>
                 </td>

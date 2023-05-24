@@ -74,4 +74,16 @@ router.get('/checkArmory', async (req, res) => {
     res.send(rows).end()
 })
 
+router.get('/return',async (req, res) => {
+    try {
+        const [result] = await db.query(`SELECT * FROM borrow JOIN MILITARY ON 
+        borrow.militaryID = MILITARY.militaryID WHERE borrow.militaryID = ? 
+        AND borrow.returnStatus = ?` ['รอส่งมอบ',66000002])
+        res.send(result);
+        
+    } catch (error) {
+        console.log(error);
+    }
+     
+});
 module.exports = router

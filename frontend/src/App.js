@@ -17,6 +17,7 @@ import SubmitForm from './pages/submitForm/submitForm'
 import Profile from './pages/profile/profile'
 import CheckRequest from './pages/check-request/checkRequest'
 import DeliverWeapon from './pages/deliver-weapon/deliverWeapon'
+import ReturnWeapon from './pages/return-weapon/returnWeapon'
 
 export default function App() {
   return (
@@ -43,6 +44,7 @@ export default function App() {
               <Route index element={<Guard />} />
               <Route path='armory' element={<ArmoryCheck />} />
               <Route path='deliver-weapon' element={<DeliverWeapon/>}/>
+              <Route path='return-weapon' element={<ReturnWeapon/>}/>
             </Route>
           </Route>
 
