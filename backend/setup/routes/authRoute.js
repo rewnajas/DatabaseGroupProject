@@ -31,7 +31,6 @@ router.get('/logout', (req, res) => {
     });
 });
 
-
 router.get('/isRegular', checkRole, (req, res) => {
     if (req.session.role === 'regular') {
         return res.status(200).end()
