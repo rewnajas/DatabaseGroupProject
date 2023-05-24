@@ -5,11 +5,9 @@ import axios from "../../../lib/axios";
 
 function Table() {
     const [returnList, setReturnList] = useState([]);
-    const [joinRowCount, setJoinRowCount] = useState(0);
   
     useEffect(() => {
       getReturnList();
-      countJoinRows();
     }, []);
   
     function getReturnList() {
@@ -29,7 +27,7 @@ function Table() {
         setReturnList(updatedStatus);
     
         axios
-          .post("http://localhost:8000/guard/updatedata", { key: id, weapon: weapon, attribute: "ส่งมอบ" })
+          .post("http://localhost:8000/guard/updatedata", { key: id, weapon: weapon, attribute: "ส่งคืน" })
           .then((response) => {
             console.log("Data updated successfully");
           })
@@ -37,32 +35,6 @@ function Table() {
             console.error("Error updating data:", error);
           });
       };
-
-      const countJoinRows = (id, weapon) => {
-        return axios
-          .post("http://localhost:8000/guard/countjoinrows", { key: id, weapon: weapon })
-          .then((response) => {
-            return response.data.count;
-          })
-          .catch((error) => {
-            console.error("Error counting join rows:", error);
-            return 0;
-          });
-      };
-
-      useEffect(() => {
-        const fetchJoinCounts = async () => {
-          const updatedReturnList = await Promise.all(
-            returnList.map(async (item) => {
-              const count = await countJoinRows(item.militaryID, item.weaponID);
-              return { ...item, totalAmount: count };
-            })
-          );
-          setReturnList(updatedReturnList);
-        };
-    
-        fetchJoinCounts();
-      }, [returnList]);
 
       const handleButtonDisappear = (id, weapon) => {
         const updatedList = returnList.filter(
@@ -81,7 +53,6 @@ function Table() {
               <th>Military Name</th>
               <th>Affiliation</th>
               <th>Weapon Name</th>
-              <th>Total Amount</th>
               <th>Borrow Date</th>
               <th>Check Box</th>
             </tr>
@@ -95,7 +66,6 @@ function Table() {
                 </td>
                 <td>{val.affiliation}</td>
                 <td>{val.weaponID}</td>
-                <td>{val.totalAmount}</td>
                 <td>{val.borrowDate}</td>
                 <td>
                   <div>
