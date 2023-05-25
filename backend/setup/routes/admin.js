@@ -55,7 +55,6 @@ router.get('/weapon', async(req, res) =>{
 
 })
 
-
 router.put('/borrow/:id', async (req, res) => {
   try {
     const requestId = req.params.id;

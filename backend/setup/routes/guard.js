@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const db = require('../database-config')
-const mysql = require('mysql2')
 const { isGuard } = require('../middleware/middleware')
 
 router.use(isGuard)

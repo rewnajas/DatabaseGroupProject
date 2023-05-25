@@ -3,7 +3,7 @@ const db = require('../database-config')
 
 router.post('/borrow', async (req, res) => {
     const weaponList = req.body.weapon
-    
+
     try {
         weaponList.map((val) => {
             db.query(`UPDATE WEAPON set status = 0 WHERE WEAPON.weaponName=? LIMIT ?`,
@@ -16,47 +16,46 @@ router.post('/borrow', async (req, res) => {
 
     const weaponObj = []
     let obj = {}
-    weaponList.map(async(val)=>{
-        const [rows] = await db.query('SELECT weaponID FROM WEAPON WHERE weaponName=? LIMIT ?',[
+    weaponList.map(async (val) => {
+        const [rows] = await db.query('SELECT weaponID FROM WEAPON WHERE weaponName=? LIMIT ?', [
             val.weaponName,
             val.amount
         ])
-        if(rows.length === 1) {
-             obj = {
-                weaponID : rows[0].weaponID,
-                borrowDate : val.borrowDate,
-                returnDate : val.returnDate
+        if (rows.length === 1) {
+            obj = {
+                weaponID: rows[0].weaponID,
+                borrowDate: val.borrowDate,
+                returnDate: val.returnDate
             }
             weaponObj.push(obj)
-        } else if(rows.length === 2) {
+        } else if (rows.length === 2) {
             let obj1 = {
-                weaponID : rows[0].weaponID,
-                borrowDate : val.borrowDate,
-                returnDate : val.returnDate
+                weaponID: rows[0].weaponID,
+                borrowDate: val.borrowDate,
+                returnDate: val.returnDate
             }
             weaponObj.push(obj1)
 
             let obj2 = {
-                weaponID : rows[1].weaponID,
-                borrowDate : val.borrowDate,
-                returnDate : val.returnDate
+                weaponID: rows[1].weaponID,
+                borrowDate: val.borrowDate,
+                returnDate: val.returnDate
             }
             weaponObj.push(obj2)
-            
+
         }
 
         const [l] = await db.query('SELECT * FROM borrow')
 
         let i = 0
-        if(l.length > 0) {
-             i = l[l.length-1].borrowID
+        if (l.length > 0) {
+            i = l[l.length - 1].borrowID
         }
-        
 
-        weaponObj.map((val)=>{
+        weaponObj.map((val) => {
             db.query(`INSERT INTO borrow 
             (militaryID,weaponID,borrowDate,returnDate,borrowStatus,returnStatus,borrowID,borrowReason)
-            VALUES (?,?,?,?,?,?,?,?)`,[
+            VALUES (?,?,?,?,?,?,?,?)`, [
                 req.session.passport.user,
                 val.weaponID,
                 val.borrowDate,
@@ -66,39 +65,50 @@ router.post('/borrow', async (req, res) => {
                 ++i,
                 req.body.reason
             ])
-            
         })
-
-       
     })
-
-   res.send({role : req.session.role})
-
+    res.send({ role: req.session.role })
 })
 
 router.post('/searchRegx', async (req, res) => {
     const name = req.body.name
     if (name) {
         const [rows] = await db.query(`
-  SELECT 
+    SELECT 
     (SELECT COUNT(*) FROM WEAPON 
      JOIN MILITARY ON ? = MILITARY.militaryID
      JOIN ARMORY ON MILITARY.unitID = ARMORY.unitID 
      WHERE WEAPON.armoryID = ARMORY.armoryID and WEAPON.status=1 and WEAPON.weaponName LIKE ?) as num_available, 
     WEAPON.*,ARMORY.armoryName 
-  FROM WEAPON 
-  JOIN MILITARY ON ? = MILITARY.militaryID
-  JOIN ARMORY ON MILITARY.unitID = ARMORY.unitID 
-  WHERE WEAPON.armoryID = ARMORY.armoryID and WEAPON.status=1 and WEAPON.weaponName LIKE ? 
-  LIMIT 1`, [req.session.passport.user, name + '%', req.session.passport.user, name + '%']);
-        res.send(rows).end()
+    FROM WEAPON 
+    JOIN MILITARY ON ? = MILITARY.militaryID
+    JOIN ARMORY ON MILITARY.unitID = ARMORY.unitID 
+    WHERE WEAPON.armoryID = ARMORY.armoryID and WEAPON.status=1 and WEAPON.weaponName LIKE ? 
+    LIMIT 1`, [
+        req.session.passport.user, name + '%', req.session.passport.user, name + '%'
+    ]);
+    
+    res.send(rows).end()
     }
     res.end()
 })
 
 router.get('/search:name', async (req, res) => {
     const name = req.params.name
-    const [rows] = await db.query('SELECT * FROM weapons WHERE weapon_name =?', [name])
+    const [rows] = await db.query(`
+    SELECT 
+    (SELECT COUNT(*) FROM WEAPON 
+     JOIN MILITARY ON ? = MILITARY.militaryID
+     JOIN ARMORY ON MILITARY.unitID = ARMORY.unitID 
+     WHERE WEAPON.armoryID = ARMORY.armoryID and WEAPON.status=1 and WEAPON.weaponName = ?) as num_available, 
+    WEAPON.*,ARMORY.armoryName 
+    FROM WEAPON 
+    JOIN MILITARY ON ? = MILITARY.militaryID
+    JOIN ARMORY ON MILITARY.unitID = ARMORY.unitID 
+    WHERE WEAPON.armoryID = ARMORY.armoryID and WEAPON.status=1 and WEAPON.weaponName = ? 
+    LIMIT 1`, [
+        req.session.passport.user, name, req.session.passport.user, name
+    ])
     res.send(rows).end()
 })
 
