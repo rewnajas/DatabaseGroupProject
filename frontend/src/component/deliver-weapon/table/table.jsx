@@ -29,10 +29,11 @@ function Table() {
     setBorrowList(updatedStatus);
 
     try {
-      await axios.post("http://localhost:8000/guard/updatedata", {
+      await axios.post("http://localhost:8000/guard/updateborrowdata", {
         key: id,
         weapon: weapon,
         attribute: "อนุมัติ",
+        stat: 'borrow'
       });
       console.log("Data updated successfully");
     } catch (error) {
