@@ -26,7 +26,7 @@ router.get('/borrow', async(req, res) => {
     }
 });
 
-router.post('/updatedata', (req, res) => {
+router.post('/updateborrowdata', (req, res) => {
     const key = req.body.key;
     const weapon = req.body.weapon;
     const attributeValue = req.body.attribute;
@@ -47,22 +47,27 @@ router.post('/updatedata', (req, res) => {
     }
 });
 
-router.post("/countjoinrows", async (req, res) => {
-    const { key, weapon } = req.body;
+router.post('/updatereturndata', (req, res) => {
+    const key = req.body.key;
+    const weapon = req.body.weapon;
+    const attributeValue = req.body.attribute;
+
     try {
-        const [results] = await db.query(`SELECT COUNT(*) AS count 
-            FROM borrow WHERE borrow.militaryID = ? AND borrow.weaponID = ?`, [
-            key, weapon
+        db.query(`UPDATE borrow SET borrow.returnStatus = ? 
+        WHERE borrow.militaryID = ? AND borrow.weaponID = ?`,[
+            attributeValue, key, weapon
         ])
-            const count = results[0].count;
-            res.status(200).json({ count });
-        
+        .then(()=>{
+            console.log('Return status updated successfully');
+            res.sendStatus(200);
+        })
 
     } catch (error) {
-        console.error("Error counting join rows:", error);
-        res.status(500).json({ error: "An error occurred while counting join rows." });
+        console.error('Error updating returnStatus:', error);
+        res.status(500).json({ error: 'Error updating returnStatus' });
     }
 });
+
 
 router.get('/checkArmory', async (req, res) => {
     const [rows] = await db1.query(`SELECT WEAPON.* FROM WEAPON 
