@@ -16,9 +16,10 @@ export default function Searchbar(props) {
   };
 
 const handleSearch = () =>{
-  axios.get(`http://localhost:8000/user/search${searchString}`)
+  axios.get(`http://localhost:8000/search${searchString}`)
   .then((response)=>{
     props.setWeapon(response.data);
+    setSearchString('');
   })
 }
 
