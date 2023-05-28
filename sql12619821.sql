@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: sql12.freemysqlhosting.net
--- Generation Time: May 21, 2023 at 10:12 AM
+-- Generation Time: May 28, 2023 at 12:15 PM
 -- Server version: 5.5.62-0ubuntu0.14.04.1
 -- PHP Version: 7.0.33-0ubuntu0.16.04.16
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sql12619821`
+-- Database: `sql12621931`
 --
 
 -- --------------------------------------------------------
@@ -57,7 +57,7 @@ CREATE TABLE `borrow` (
   `borrowStatus` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `returnStatus` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `borrowID` int(5) NOT NULL,
-  `borrowReason` text NOT NULL
+  `borrowReason` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -103,14 +103,14 @@ CREATE TABLE `MILITARY` (
 --
 
 INSERT INTO `MILITARY` (`militaryID`, `Fname`, `Lname`, `prefix`, `affiliation`, `militaryForce`, `password`, `militaryType`, `unitID`) VALUES
-(66000001, 'ชยิน', 'แสนสุวรรณวงศ์', 'พันตรี', 'ทหารบก', 'เหล่าทหารพลาธิการ', '$2y$10$udf939nbiUeonr54JSU6eek6.DmxsXA9w0aRmR0hY.QPaenRqwzqm', 'admin', 101),
-(66000002, 'ธนัท', 'ธารางาม', 'ร้อยตรี', 'ทหารบก', 'เหล่าทหารพลาธิการ', '$2y$10$udf939nbiUeonr54JSU6eek6.DmxsXA9w0aRmR0hY.QPaenRqwzqm', 'regular', 101),
-(66000003, 'พัฒนภัทร', 'ทรัพย์ศิลา', 'สิบตรี', 'ทหารบก', 'เหล่าทหารพลาธิการ', '$2y$10$udf939nbiUeonr54JSU6eek6.DmxsXA9w0aRmR0hY.QPaenRqwzqm', 'guard', 101),
-(66000004, 'ภัทร', 'ศรีสดุดี', 'พันโท', 'ทหารบก', 'เหล่าทหารพลาธิการ', '$2y$10$udf939nbiUeonr54JSU6eek6.DmxsXA9w0aRmR0hY.QPaenRqwzqm', 'admin', 101),
-(66000005, 'พงศกร', 'สว่างเสนา', 'สิบโท', 'ทหารบก', 'เหล่าทหารพลาธิการ', '$2y$10$udf939nbiUeonr54JSU6eek6.DmxsXA9w0aRmR0hY.QPaenRqwzqm', 'guard', 101),
-(66000006, 'คมสัน', 'ธงชัย', 'พันตรี', 'ทหารบก', 'เหล่าทหารม้า', '$2y$10$udf939nbiUeonr54JSU6eek6.DmxsXA9w0aRmR0hY.QPaenRqwzqm', 'admin', 102),
-(66000007, 'นเรศ', 'ธงชัย', 'ร้อยตรี', 'ทหารบก', 'เหล่าทหารม้า', '$2y$10$udf939nbiUeonr54JSU6eek6.DmxsXA9w0aRmR0hY.QPaenRqwzqm', 'regular', 102),
-(66000008, 'ธราธิป', 'ธารางาม', 'สิบตรี', 'ทหารบก', 'เหล่าทหารม้า', '$2y$10$udf939nbiUeonr54JSU6eek6.DmxsXA9w0aRmR0hY.QPaenRqwzqm', 'guard', 102);
+(66000001, 'ชยิน', 'แสนสุวรรณวงศ์', 'พันตรี', 'ทหารบก', 'เหล่าทหารพลาธิการ', '$2y$10$eSENYtohcMwwyWp6Ye1sdO6G5o2NubAiQ23ZWJEnEfcUfsWNGQKC.', 'admin', 101),
+(66000002, 'ธนัท', 'ธารางาม', 'ร้อยตรี', 'ทหารบก', 'เหล่าทหารพลาธิการ', '$2y$10$eSENYtohcMwwyWp6Ye1sdO6G5o2NubAiQ23ZWJEnEfcUfsWNGQKC.', 'regular', 101),
+(66000003, 'พัฒนภัทร', 'ทรัพย์ศิลา', 'สิบตรี', 'ทหารบก', 'เหล่าทหารพลาธิการ', '$2y$10$eSENYtohcMwwyWp6Ye1sdO6G5o2NubAiQ23ZWJEnEfcUfsWNGQKC.', 'guard', 101),
+(66000004, 'ภัทร', 'ศรีสดุดี', 'พันโท', 'ทหารบก', 'เหล่าทหารพลาธิการ', '$2y$10$eSENYtohcMwwyWp6Ye1sdO6G5o2NubAiQ23ZWJEnEfcUfsWNGQKC.', 'admin', 101),
+(66000005, 'พงศกร', 'สว่างเสนา', 'สิบโท', 'ทหารบก', 'เหล่าทหารพลาธิการ', '$2y$10$eSENYtohcMwwyWp6Ye1sdO6G5o2NubAiQ23ZWJEnEfcUfsWNGQKC.', 'guard', 101),
+(66000006, 'คมสัน', 'ธงชัย', 'พันตรี', 'ทหารบก', 'เหล่าทหารม้า', '$2y$10$eSENYtohcMwwyWp6Ye1sdO6G5o2NubAiQ23ZWJEnEfcUfsWNGQKC.', 'admin', 102),
+(66000007, 'นเรศ', 'ธงชัย', 'ร้อยตรี', 'ทหารบก', 'เหล่าทหารม้า', '$2y$10$eSENYtohcMwwyWp6Ye1sdO6G5o2NubAiQ23ZWJEnEfcUfsWNGQKC.', 'regular', 102),
+(66000008, 'ธราธิป', 'ธารางาม', 'สิบตรี', 'ทหารบก', 'เหล่าทหารม้า', '$2y$10$eSENYtohcMwwyWp6Ye1sdO6G5o2NubAiQ23ZWJEnEfcUfsWNGQKC.', 'guard', 102);
 
 -- --------------------------------------------------------
 
@@ -218,8 +218,8 @@ ALTER TABLE `ARMORY`
 -- Constraints for table `borrow`
 --
 ALTER TABLE `borrow`
-  ADD CONSTRAINT `weaponIDB` FOREIGN KEY (`weaponID`) REFERENCES `WEAPON` (`weaponID`),
-  ADD CONSTRAINT `militaryIDB` FOREIGN KEY (`militaryID`) REFERENCES `MILITARY` (`militaryID`);
+  ADD CONSTRAINT `militaryIDB` FOREIGN KEY (`militaryID`) REFERENCES `MILITARY` (`militaryID`),
+  ADD CONSTRAINT `weaponIDB` FOREIGN KEY (`weaponID`) REFERENCES `WEAPON` (`weaponID`);
 
 --
 -- Constraints for table `guard`
