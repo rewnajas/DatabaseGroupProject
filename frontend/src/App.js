@@ -24,8 +24,8 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path='/' element={<Login />} />
-          <Route element={<Protected />}>
 
+          <Route element={<Protected />}>
           <Route element={<IsUser />}>
             <Route path='homepage' element={<Navbar />}>
               <Route index element={<Homepage />} />
