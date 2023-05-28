@@ -48,6 +48,7 @@ export default function App() {
               <Route path='armory' element={<ArmoryCheck />} />
               <Route path='deliver-weapon' element={<DeliverWeapon/>}/>
               <Route path='return-weapon' element={<ReturnWeapon/>}/>
+              <Route path='search' element={<SearchRegular/>}/>
             </Route>
           </Route>
 

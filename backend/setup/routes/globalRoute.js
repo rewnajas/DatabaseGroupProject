@@ -139,6 +139,39 @@ router.get('/profilemforce', async (req, res) => {
     res.send(mforce);
 });
 
+router.get('/borrow', async(req, res) =>{
+    try {
+        const [result] = await db.query('SELECT * FROM borrow WHERE militaryID = ?',[
+            req.session.passport.user
+        ])
+        res.send(result)
+    } catch (err) {
+        console.log(err)
+    }
+
+})
+
+router.get('/military', async(req, res) =>{
+    try {
+        const [result] = await db.query('SELECT * FROM MILITARY WHERE militaryID = ?',[
+            req.session.passport.user
+        ])
+        res.send(result)
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+
+router.get('/WEAPON', async(req, res) =>{
+    try {
+        const [result] = await db.query('SELECT * FROM WEAPON')
+        res.send(result)
+    } catch (err) {
+        console.log(err)
+    }
+})
+
 router.get('/department', async (req, res) => {
     var result = await db.query('SELECT department FROM UNIT JOIN MILITARY ON UNIT.unitID = MILITARY.unitID WHERE militaryID = ?', [req.session.passport.user]);
     var d = result[0][0].department;

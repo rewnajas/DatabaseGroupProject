@@ -19,9 +19,9 @@ const RequestList = () => {
 
   const fetchData = async () => {
     try {
-      const response1 = await axios.get('http://localhost:8000/user/borrow');
-      const response2 = await axios.get('http://localhost:8000/user/military');
-      const response3 = await axios.get('http://localhost:8000/user/WEAPON');
+      const response1 = await axios.get('http://localhost:8000/borrow');
+      const response2 = await axios.get('http://localhost:8000/military');
+      const response3 = await axios.get('http://localhost:8000/WEAPON');
 
       setBorrowData(response1.data);
       setMilitaryData(response2.data);
