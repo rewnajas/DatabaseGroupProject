@@ -11,6 +11,7 @@ export default function Protected() {
     axios.get('http://localhost:8000/checkauth')
     .then((response)=>{
       if(response.status === 200) {
+       
         setPermission(true)
       }
     }).catch(err=>console.log(err))
