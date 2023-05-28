@@ -10,7 +10,7 @@ export default function admin() {
     <div className={style.wrapper}>
       <Profile />
       <Borrow />
-      <FindHistory />
+      <FindHistory role='admin'/>
       <CheckRequest />
     </div>
   );

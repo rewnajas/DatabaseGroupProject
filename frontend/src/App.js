@@ -18,7 +18,8 @@ import Profile from './pages/profile/profile'
 import CheckRequest from './pages/check-request/checkRequest'
 import DeliverWeapon from './pages/deliver-weapon/deliverWeapon'
 import ReturnWeapon from './pages/return-weapon/returnWeapon'
-
+import SearchRegular from './pages/search-history/regular/search'
+import SearchAdmin from './pages/search-history/admin/search'
 export default function App() {
   return (
     <BrowserRouter>
@@ -29,6 +30,7 @@ export default function App() {
           <Route element={<IsUser />}>
             <Route path='homepage' element={<Navbar />}>
               <Route index element={<Homepage />} />
+              <Route path='search' element={<SearchRegular/>}/>
             </Route>
           </Route>
 
@@ -36,6 +38,7 @@ export default function App() {
             <Route path='admin' element={<Navbar />}>
               <Route index element={<Admin />} />
               <Route path='check-request' element={<CheckRequest/>}/>
+              <Route path='search' element={<SearchAdmin/>}/>
             </Route>
           </Route>
 

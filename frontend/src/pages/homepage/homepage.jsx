@@ -10,7 +10,7 @@ export default function homepage() {
   return (
     <div className={style.wrapper}>
       <Profile/>
-      <Borrow  role='regular'/>
+      <Borrow/>
       <Findhistory  role='regular'/>
     </div>
     
