@@ -70,7 +70,7 @@ router.post('/updatereturndata', (req, res) => {
 
 
 router.get('/checkArmory', async (req, res) => {
-    const [rows] = await db1.query(`SELECT WEAPON.* FROM WEAPON 
+    const [rows] = await db.query(`SELECT WEAPON.* FROM WEAPON 
         JOIN MILITARY ON ? = MILITARY.militaryID
         JOIN ARMORY ON MILITARY.unitID = ARMORY.unitID 
         WHERE WEAPON.armoryID = ARMORY.armoryID`,
@@ -83,15 +83,12 @@ router.get('/return',async (req, res) => {
         const [rows] = await db.query(`SELECT armoryID FROM guard WHERE militaryID=?`,[
             req.session.passport.user
         ])
-        console.log(rows)
         const guardID = rows[0].armoryID
 
         const [result] = await db.query(`SELECT * FROM borrow JOIN MILITARY ON 
         borrow.militaryID = MILITARY.militaryID 
         JOIN WEAPON ON borrow.weaponID = WEAPON.weaponID
         WHERE borrow.returnStatus = ? `, ['รอส่งมอบ'])
-
-        console.log(result)
         res.send(result);
         
     } catch (error) {
