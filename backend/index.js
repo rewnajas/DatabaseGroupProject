@@ -6,7 +6,7 @@ const passport = require('./setup/passport-config')
 const session = require('express-session')
 require('dotenv').config()
 const authRouter = require('./setup/routes/authRoute')
-const port = process.env.port
+const port = process.env.PORT
 
 const app = express()
 
