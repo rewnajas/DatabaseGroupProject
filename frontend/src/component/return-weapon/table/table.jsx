@@ -56,7 +56,7 @@ function Table() {
                 {val.Fname} {val.Lname}
               </td>
               <td>{val.affiliation}</td>
-              <td>{val.weaponID}</td>
+              <td>{val.weaponName}</td>
               <td>{val.borrowDate}</td>
               <td>
                 <div>
